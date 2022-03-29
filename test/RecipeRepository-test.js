@@ -17,14 +17,16 @@ describe("Recipe", () => {
     expect(recipeRepo).to.be.an.instanceOf(RecipeRepository);
   });
   it("Should be able to hold recipe data", () => {
-    // console.log(data);
     expect(recipeRepo.data).to.equal(data);
   });
   it("Should have a method that filters by tag", () => {
-    const dataTest = recipeRepo.filterRecipe("snack");
-    console.log(dataTest);
-
-    console.log(dataTest.length);
+    const dataTest = recipeRepo.filterRecipeTag("snack");
     expect(dataTest.length).to.equal(9);
+  });
+  it("Should have a method that filters by name", () => {
+    const dataTest = recipeRepo.filterRecipeName(
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
+    expect(dataTest[0]).to.deep.equal(data[0]);
   });
 });
