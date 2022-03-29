@@ -7,7 +7,7 @@ describe("Recipe", () => {
   let data;
   let recipeRepo;
   beforeEach(() => {
-    data = recipes.recipeData;
+    data = recipes;
     recipeRepo = new RecipeRepository(data);
   });
   it("Should be a function", () => {
@@ -17,11 +17,14 @@ describe("Recipe", () => {
     expect(recipeRepo).to.be.an.instanceOf(RecipeRepository);
   });
   it("Should be able to hold recipe data", () => {
-    console.log(data[0]);
+    // console.log(data);
     expect(recipeRepo.data).to.equal(data);
   });
   it("Should have a method that filters by tag", () => {
-    console.log(recipeRepo.filterRecipe("snack"));
-    // expect(RecipeRepository.filterRecipe("snack").to.equal())
+    const dataTest = recipeRepo.filterRecipe("snack");
+    console.log(dataTest);
+
+    console.log(dataTest.length);
+    expect(dataTest.length).to.equal(9);
   });
 });

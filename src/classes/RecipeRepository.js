@@ -7,8 +7,8 @@ class RecipeRepository {
     this.data = data;
   }
   filterRecipe(userInput) {
-    const result = data.filter((recipe) => {
-      return recipe.includes(userInput);
+    const result = this.data.filter((recipe) => {
+      return recipe.tags.includes(userInput);
     });
     return result;
   }
