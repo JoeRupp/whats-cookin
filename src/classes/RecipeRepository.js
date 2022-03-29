@@ -1,7 +1,16 @@
-class RecipeRepository {
-  constructor() {
+// const data = require("../data/recipes");
+// const recipeInfo = data.recipeData;
+// const recipes = require("..src/data/recipes");
 
-    // One class to get you started!
+class RecipeRepository {
+  constructor(data) {
+    this.data = data;
+  }
+  filterRecipe(userInput) {
+    const result = data.filter((recipe) => {
+      return recipe.includes(userInput);
+    });
+    return result;
   }
 }
 
