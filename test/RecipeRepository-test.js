@@ -3,7 +3,7 @@ import RecipeRepository from "../src/classes/RecipeRepository";
 import recipes from "../src/data/recipes";
 // const recipes = require("..src/data/recipes");
 
-describe("Recipe", () => {
+describe("Recipe Repository", () => {
   let data;
   let recipeRepo;
   beforeEach(() => {
