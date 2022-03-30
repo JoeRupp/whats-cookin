@@ -1,6 +1,5 @@
 import { expect } from "chai";
 import Ingredient from "../src/classes/Ingredient";
-// import ingredients from "../src/data/ingredients";
 
 describe("Ingredients", () => {
   let ingredient;
@@ -11,11 +10,10 @@ describe("Ingredients", () => {
     testIngredient = {
       "id": 20081,
       "name": "wheat flour",
-      "estimatedCostInCents": 142
-    }
-
-    ingredient = new Ingredient(testIngredient.id, testIngredient.name, testIngredient.estimatedCostInCents);
-
+      "estimatedCostInCents": 142,
+      "unit": "cups"
+    };
+    ingredient = new Ingredient(testIngredient.id, testIngredient.name, testIngredient.estimatedCostInCents, testIngredient.unit);
     faltyIngredient = new Ingredient();
   });
 
@@ -49,5 +47,13 @@ describe("Ingredients", () => {
 
   it("Should return an error if no estimated cost is provided", () => {
     expect(faltyIngredient.estCost).to.equal("no estimated cost provided");
+  });
+
+  it("Should have an unit measurment", () => {
+    expect(ingredient.unit).to.equal("cups");
+  });
+
+  it("Should return an error if no unit is provided", () => {
+    expect(faltyIngredient.unit).to.equal("no unit provided");
   });
 });

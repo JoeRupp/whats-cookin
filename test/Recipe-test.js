@@ -2,7 +2,6 @@ import { expect } from "chai";
 import Recipe from "../src/classes/Recipe";
 import data from "../src/data/ingredients";
 
-
 describe("Recipe", () => {
   let recipe;
   let mockRecipe;
@@ -57,7 +56,6 @@ describe("Recipe", () => {
         "snack"
       ]
     };
-
     recipe = new Recipe(mockRecipe, data);
   });
 
@@ -97,28 +95,23 @@ describe("Recipe", () => {
   });
 
   it("Should have a method that gets an ingredient's name", () => {
-    recipe.getIngredientName(data, mockRecipe.ingredients[0]);
-    expect().to.equal();
+    expect(recipe.getIngredientName(data, mockRecipe.ingredients[0])).to.equal('wheat flour');
   });
 
-  it("Should have a method that gets an ingredient's estimated cost", () => {
-    recipe.getCostOfIngredients(data, mockRecipe.ingredients[0]);
-    expect().to.equal();
+  it("Should have a method that gets an ingredient's estimated cost in cents", () => {
+    expect(recipe.getCostOfIngredients(data, mockRecipe.ingredients[0])).to.equal(213);
   });
 
-  it("Should have a method that gets a modified ingredient list using the Ingredient Class", () => {
-    recipe.createIngredientList(data);
-    expect().to.equal();
+  it("Should store the total cost in the constructor in dollars", () => {
+    expect(recipe.totalCost).to.equal(9.76);
   });
 
-  it("Should have a method that returns the recipes instructions", () => {
-    recipe.getDirections();
-    expect().to.equal();
+  it("Should have a method that gets a modified ingredient list array using the Ingredient Class", () => {
+    expect(recipe.instructions).to.be.a("array");
+    expect(recipe.createIngredientList()).to.deep.equal(recipe.ingredientList);
   });
 
   it("Should have a method that returns the recipes instructions", () => {
-    recipe.createIngredientList(data);
-    recipe.getTotalCost();
-    expect().to.equal();
+    expect(recipe.getDirections()).to.equal(mockRecipe.instructions);
   });
 });

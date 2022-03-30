@@ -40,7 +40,7 @@ class Recipe {
       return new Ingredient(ingredient.id, ingredName, ingredCost, ingredient.quantity.unit);
     });
 
-    this.ingredientList = ingredientList;
+    // this.ingredientList = ingredientList;
     return ingredientList;
   };
 
@@ -49,9 +49,8 @@ class Recipe {
       return total += cost.estCost;
     },0);
 
-    console.log(totalCost)
-    this.totalCost = totalCost;
-    return totalCost;
+    // this.totalCost = totalCost;
+    return totalCost/100;
   };
 
   getDirections() {
