@@ -3,13 +3,24 @@ body {
   background-color: #f0efef;
   display: flex;
 }
-h3 {
-  font-size: 62px;
-}
 
 h2 {
   border: solid 3px blue;
   font-size: 74px;
+}
+
+h3 {
+  font-size: 62px;
+  color: white;
+}
+
+h4 {
+  color: black;
+  font-size: 62px;
+}
+
+p {
+  font-size: 54px;
 }
 /*NAVIGATION--------------------*/
 nav {
@@ -26,11 +37,24 @@ nav {
 }
 .recipe-title {
   margin-top: 20px;
+  color: white;
 }
 
 form {
   border: solid 3px yellow;
+  height: 60px;
+  display: flex;
 }
+
+.search-box {
+  height: 100%;
+  width: 80%;
+}
+
+.search-button {
+  font-size: 62px;
+}
+
 .first-recipe,
 .second-recipe,
 .third-recipe,
@@ -68,10 +92,20 @@ form {
   scrollbar-width: thin; */
 }
 
+.step-number {
+  font-size: 30px;
+  border: solid 3px green;
+  height: 700px;
+}
+
 .recipe-details {
   border: solid 3px pink;
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.selected-dish {
+  width: 275px;
 }
