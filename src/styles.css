@@ -1,25 +1,77 @@
-
 /*UNIVERSAL---------------------*/
 body {
   background-color: #f0efef;
+  display: flex;
 }
-
-
-/*NAVIGATION--------------------*/
-nav {
-  background-color: #242424
+h3 {
+  font-size: 62px;
 }
 
 h2 {
-  border: solid 3px blue
+  border: solid 3px blue;
+  font-size: 74px;
+}
+/*NAVIGATION--------------------*/
+nav {
+  background-color: #242424;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .logo {
-  border: solid 3px red
+  border: solid 3px red;
+  width: 100%;
+}
+.recipe-title {
+  margin-top: 20px;
 }
 
-
-
-
+form {
+  border: solid 3px yellow;
+}
+.first-recipe,
+.second-recipe,
+.third-recipe,
+.fourth-recipe {
+  display: flex;
+  flex-direction: row;
+}
+.recipe-list {
+  width: 100%;
+  height: 75%;
+  overflow-y: scroll;
+}
 
 /*RECIPE------------------------*/
+
+.selected-recipe {
+  border: solid 7px orange;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+.recipe {
+  border: solid 3px purple;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.instructions {
+  overflow-y: scroll;
+  /* scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin; */
+}
+
+.recipe-details {
+  border: solid 3px pink;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
