@@ -1,42 +1,80 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Whats Cookin</title>
     <link rel="icon" href="./images/What'sCookinLogo-02.png"
   </head>
   <body>
     <nav>
       <header>
-        <img class="logo" src="./images/What'sCookinLogo-01.png" alt="What's cooking Logo">
+        <img
+          class="logo"
+          src="./images/What'sCookinLogo-01.png"
+          alt="What's cooking Logo"
+        />
       </header>
-      <h2>Recipes</h2>
+      <h2 class="recipe-title">Recipes</h2>
       <form>
-        <input type="text" placeholder="Search">
+        <input type="text" placeholder="Search" />
         <button>Favorites</button>
       </form>
+
       <section class="recipe-list">
-        <div>
-          <img src="./images/chicken-leg.png" alt="picture of food">
+        <div class="first-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
           <div>
-            <h3>Recipe Title</h3>
+            <h3>Recipe Title1</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+
+        <div class="second-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title2</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+
+        <div class="third-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title3</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+
+        <div class="fourth-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title4</h3>
             <p>$10.00</p>
             <button>Favorite</button>
           </div>
         </div>
       </section>
     </nav>
+
     <section class="selected-recipe">
       <section class="recipe">
         <h2>Recipe Name</h2>
-        <img src="./images/chicken-leg.png" alt="picture of food">
+        <img src="./images/chicken-leg.png" alt="picture of food" />
         <h3>Directions</h3>
-        <div>
+        <div class="instructions">
           <ol class="step-number">
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
             <li>instructions</li>
           </ol>
         </div>
       </section>
+
       <section class="recipe-details">
         <h3>Price</h3>
         <button>Favorite Button</button>
