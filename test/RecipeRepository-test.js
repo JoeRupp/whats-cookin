@@ -1,15 +1,18 @@
 import { expect } from "chai";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import recipes from "../src/data/recipes";
+import ingredients from "../src/data/ingredients";
 // const recipes = require("..src/data/recipes");
 
 describe("Recipe Repository", () => {
-  let data;
+  let recipeData;
+  let ingredData;
   let recipeRepo;
 
   beforeEach(() => {
-    data = recipes;
-    recipeRepo = new RecipeRepository(data);
+    recipeData = recipes;
+    ingredData = ingredients;
+    recipeRepo = new RecipeRepository(ingredData, recipeData);
 
   });
 
@@ -37,5 +40,10 @@ describe("Recipe Repository", () => {
     );
 
     expect(dataTest[0]).to.deep.equal(data[0]);
+  });
+
+  it.only("Should convert recipe data into instances of Recipe", () => {
+    console.log(recipeRepo)
+    expect().to.equal();
   });
 });

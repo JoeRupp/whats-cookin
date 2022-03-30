@@ -1,21 +1,26 @@
+import Recipe from "./Recipe";
+
 class RecipeRepository {
-  constructor(data) {
-    this.data = data;
-  }
+  constructor(ingredData, recipeData) {
+    this.ingredData = ingredData;
+    this.recipeData = recipeData;
+    this.repo = this.recipeData.map((recipe) => new Recipe(recipe, ingredData));
+  };
 
   filterRecipeTag(userInput) {
     userInput.toLowerCase();
 
-    const result = this.data.filter((recipe) => {
+    const result = this.repo.filter((recipe) => {
       return recipe.tags.includes(userInput);
     });
+
     return result;
   }
 
   filterRecipeName(userInput) {
     userInput.toLowerCase();
 
-    const result = this.data.filter((recipe) => {
+    const result = this.repo.filter((recipe) => {
       return recipe.name.includes(userInput);
     });
 

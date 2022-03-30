@@ -58,7 +58,7 @@ describe("Recipe", () => {
       ]
     };
 
-    recipe = new Recipe(mockRecipe);
+    recipe = new Recipe(mockRecipe, data);
   });
 
   it("Should be a function", () => {
@@ -113,6 +113,12 @@ describe("Recipe", () => {
 
   it("Should have a method that returns the recipes instructions", () => {
     recipe.getDirections();
+    expect().to.equal();
+  });
+
+  it("Should have a method that returns the recipes instructions", () => {
+    recipe.createIngredientList(data);
+    recipe.getTotalCost();
     expect().to.equal();
   });
 });
