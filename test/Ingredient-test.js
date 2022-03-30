@@ -2,7 +2,7 @@ import { expect } from "chai";
 import Ingredient from "../src/classes/Ingredient";
 // import ingredients from "../src/data/ingredients";
 
-describe("Ingredient", () => {
+describe("Ingredients", () => {
   let ingredient;
   let testIngredient;
   let faltyIngredient;
