@@ -5,7 +5,9 @@ import './images/turing-logo.png'
 import "./images/What'sCookinLogo-01.png"
 import "./images/What'sCookinLogo-02.png"
 import "./images/chicken-leg.png"
-
+import "./images/star-icon-red.png"
+import "./images/star-icon-white.png"
+import "./images/star-icon-grey.png"
 
 
 console.log('Hello world');
