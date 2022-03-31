@@ -11,3 +11,26 @@ import "./images/star-icon-grey.png"
 
 
 console.log('Hello world');
+
+//GlobalVariables
+//const recipeRepo = new RecipeRepository;
+
+
+//QuerySelectors
+const recipeList = document.QuerySelectors('.recipe-list');
+const searchBox = document.QuerySelectors('.search-box');
+const favoriteFilterBtn = document.QuerySelectors('.filter-favorites-btn');
+const favoriteBtn = document.QuerySelectors('.favorites-star');
+const recipeName = document.QuerySelectors('.recipe-name');
+const dishImg = document.QuerySelectors('.select-dish-img');
+const directions = document.QuerySelectors('.directions');
+const recipeCost = document.QuerySelectors('.recipe-cost');
+const listOfIngredients = document.QuerySelectors('.list-of-ingredients');
+
+//EventListeners
+
+
+//Functions
+
+
+//Helper Functions
