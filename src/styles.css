@@ -1,123 +1,220 @@
 /*UNIVERSAL---------------------*/
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
+  height: 100vh;
+  margin: 0px;
   background-color: #f0efef;
   display: flex;
 }
 
-h2 {
-  border: solid 3px blue;
-  font-size: 90px;
-}
-
-h3 {
-  color: white;
-  font-size: 62px;
-}
-
-h4 {
-  color: black;
-  font-size: 62px;
-}
-
-p {
-  color: white;
-  font-size: 54px;
-}
-/*NAVIGATION--------------------*/
+/*NAVIGATION----------------------------------------------------------*/
 nav {
   background-color: #242424;
+  width: 40%;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
   display: flex;
-  width: 50%;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .logo {
-  border: solid 3px red;
-  width: 100%;
+  width: 90%;
+  padding-top: 5%;
 }
-.recipe-title {
+
+h1 {
   color: white;
-  margin-top: 20px;
+  font-size: 2em;
+  padding-left: 5%;
+  margin-top: 5vh;
+  margin-bottom: 1vh;
 }
 
 form {
-  border: solid 3px yellow;
+  height: 10%;
+  padding-left: 5%;
   display: flex;
-  height: 60px;
-}
-
-.search-box {
-  height: 100%;
-  width: 80%;
-}
-
-.search-button {
-  font-size: 62px;
-}
-
-.recipe-list {
-  height: 75%;
-  overflow-y: scroll;
-  scrollbar-color: pink;
-  width: 100%;
-}
-
-.first-recipe,
-.second-recipe,
-.third-recipe,
-.fourth-recipe {
-  display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
 }
 
-/*RECIPE------------------------*/
+.search-box {
+  height: 25px; 
+  width: 45%;
+  border-radius: 25px;
+}
+
+.filter-favorites-btn {
+  max-height: 30px; 
+  width: 10vw;
+  margin: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-favorites-btn:hover {
+  transform: scale(1.15);
+}
+
+.filter-favorites-star {
+  height: 30px;
+  width: 30px;
+}
+
+.filter-favorites-text {
+  font-size: 1em;
+  color: white;
+  margin-left: 5%;
+}
+
+/*NAVIGATION // RECIPE LIST-------------------------------------------*/
+
+.recipe-list {
+  height: 75%;
+  padding: 5%;
+  margin-bottom: 5%;
+  overflow-y: scroll;
+  scrollbar-color: black;
+  width: 85%;
+}
+
+.meal-preview {
+  height: 30vh;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.meal-preview:hover {
+  background-color: #383838;
+}
+
+.meal-img-preview {
+  height: 80%;
+  margin-left: 5%;
+}
+
+.meal-info-preview {
+  padding-left: 5%;
+  width: 100%;
+}
+
+h2 {
+  color: white;
+  font-size: 1.5em;
+}
+
+.meal-preview-cost {
+  color: white;
+  font-size: 1.2em;
+}
+
+.favorite-status {
+  height: 30px;
+  width: 30px;
+  background-image: url(./images/star-icon-white.png);
+  background-size: cover;
+}
+
+/*MAIN DISPLAY --------------------------------------------------------*/
 
 .selected-recipe {
-  border: solid 7px orange;
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: row;
 }
 
+/*MAIN DISPLAY // RECIPE ----------------------------------------------*/
+
 .recipe {
-  border: solid 3px purple;
   height: 100%;
-  width: 70%;
+  width: 62%;
+  padding-left: 10%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
-.selected-dish {
-  width: 500px;
+.recipe-name {
+  color: #F94A47;
+  padding: 0;
+  margin-top: 5vh;
+  margin-bottom: 5%;
 }
 
-.instructions {
+.selected-dish-img {
+  width: 70%;
+}
+
+h3 {
+  color: black;
+  font-size: 1.5em;
+}
+
+.directions {
+  width: 85%;
   overflow-y: scroll;
-  width: 100%;
+  margin-top: 0;
+  margin-bottom: 5%;
 }
 
 .step-number {
-  border: solid 3px green;
-  font-size: 36px;
-  height: 700px;
+  font-size: 1em;
+  margin-top: 0;
 }
 
+/*MAIN DISPLAY // RECIPE DETAILS ------------------------------------------*/
+
 .recipe-details {
-  border: solid 3px pink;
-  width: 30%;
+  width: 38%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.recipe-cost {
+  margin-top: 5vh;
+}
+
+.favorites-btn {
+  max-height: 30px; 
+  width: 10vw;
+  margin-top: 7%;
+  margin-bottom: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
+}
+
+.favorites-btn:hover {
+  transform: scale(1.15);
+}
+
+.favorites-star {
+  height: 50px;
+  width: 50px;
+}
+
+.favorites-text {
+  font-size: 1.5em;
+  color: black;
+  margin-left: 5%;
 }
 
 .list-of-ingredients {
-  border: solid 3px brown;
-  width: 100%;
-  height: 700px;
-  font-size: 30px;
+  margin: 0;
+  width: 65%;
+  font-size: 1em;
 }
