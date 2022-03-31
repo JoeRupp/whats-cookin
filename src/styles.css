@@ -6,12 +6,12 @@ body {
 
 h2 {
   border: solid 3px blue;
-  font-size: 74px;
+  font-size: 90px;
 }
 
 h3 {
-  font-size: 62px;
   color: white;
+  font-size: 62px;
 }
 
 h4 {
@@ -20,13 +20,14 @@ h4 {
 }
 
 p {
+  color: white;
   font-size: 54px;
 }
 /*NAVIGATION--------------------*/
 nav {
   background-color: #242424;
-  width: 50%;
   display: flex;
+  width: 50%;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -36,14 +37,14 @@ nav {
   width: 100%;
 }
 .recipe-title {
-  margin-top: 20px;
   color: white;
+  margin-top: 20px;
 }
 
 form {
   border: solid 3px yellow;
-  height: 60px;
   display: flex;
+  height: 60px;
 }
 
 .search-box {
@@ -55,57 +56,69 @@ form {
   font-size: 62px;
 }
 
+.recipe-list {
+  height: 75%;
+  overflow-y: scroll;
+  scrollbar-color: red yellow;
+  width: 100%;
+}
+
 .first-recipe,
 .second-recipe,
 .third-recipe,
 .fourth-recipe {
   display: flex;
   flex-direction: row;
-}
-.recipe-list {
-  width: 100%;
-  height: 75%;
-  overflow-y: scroll;
+  justify-content: flex-start;
 }
 
 /*RECIPE------------------------*/
 
 .selected-recipe {
   border: solid 7px orange;
+  width: 50%;
   display: flex;
   flex-direction: row;
-  width: 50%;
 }
 
 .recipe {
   border: solid 3px purple;
   height: 100%;
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.selected-dish {
+  width: 500px;
 }
 
 .instructions {
   overflow-y: scroll;
-  /* scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin; */
+  scrollbar-color: red yellow;
+  width: 100%;
 }
 
 .step-number {
-  font-size: 30px;
   border: solid 3px green;
+  font-size: 36px;
   height: 700px;
 }
 
 .recipe-details {
   border: solid 3px pink;
-  width: 50%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
-.selected-dish {
-  width: 275px;
+.list-of-ingredients {
+  border: solid 3px brown;
+  height: 700px;
+  width: 100%;
+  font-size: 30px;
 }
