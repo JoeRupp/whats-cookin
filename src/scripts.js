@@ -46,9 +46,8 @@ const listOfIngredients = document.querySelector('.list-of-ingredients');
 
 const viewAllRecipes = () => {
  const result = recipeRepo.repo.map(eachRecipe => {
-  
-   const mealPreview = recipeList
-   mealPreview.innerHTML = `
+
+   const mealPreview = `
    <div class="meal-preview">
      <img class="meal-img-preview" src="${eachRecipe.image}" alt="picture of food" />
      <div class="meal-info-preview">
@@ -60,8 +59,9 @@ const viewAllRecipes = () => {
    return mealPreview;
 
  });
-
- return result;
+ const mealInfo = recipeList
+ mealInfo.innerHTML = result;
+ return mealInfo;
 
 };
 viewAllRecipes()
