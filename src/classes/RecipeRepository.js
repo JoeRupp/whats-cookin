@@ -8,20 +8,20 @@ class RecipeRepository {
   };
 
   filterRecipeTag(userInput) {
-    userInput.toLowerCase();
+    const input = userInput.toLowerCase()
 
     const result = this.repo.filter((recipe) => {
-      return recipe.tags.includes(userInput);
+      return recipe.tags.includes(input);
     });
 
     return result;
-  }
+  };
 
   filterRecipeName(userInput) {
-    userInput.toLowerCase();
+    const input = userInput.toLowerCase().split(" ").map((word) => word.replace(word[0], word[0].toUpperCase())).join(" ");
 
     const result = this.repo.filter((recipe) => {
-      return recipe.name.includes(userInput);
+      return recipe.name.includes(input);
     });
 
     return result;
