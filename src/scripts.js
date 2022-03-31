@@ -28,6 +28,8 @@ const recipeCost = document.QuerySelectors('.recipe-cost');
 const listOfIngredients = document.QuerySelectors('.list-of-ingredients');
 
 //EventListeners
+favoriteFilterBtn.addEventListener('click');
+favoriteBtn.addEventListener('click');
 
 
 //Functions
