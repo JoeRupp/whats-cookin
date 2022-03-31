@@ -1,5 +1,8 @@
 import './styles.css';
 import apiCalls from './apiCalls';
+import RecipeRepository from "../src/classes/RecipeRepository";
+import recipes from "../src/data/recipes";
+import ingredients from "../src/data/ingredients";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import "./images/What'sCookinLogo-01.png"
@@ -13,26 +16,57 @@ import "./images/star-icon-grey.png"
 console.log('Hello world');
 
 //GlobalVariables
-//const recipeRepo = new RecipeRepository;
+let ingredData = ingredients;
+let recipeData = recipes;
+let recipeRepo = new RecipeRepository(ingredData, recipeData)
 
 
 //QuerySelectors
-const recipeList = document.QuerySelectors('.recipe-list');
-const searchBox = document.QuerySelectors('.search-box');
-const favoriteFilterBtn = document.QuerySelectors('.filter-favorites-btn');
-const favoriteBtn = document.QuerySelectors('.favorites-star');
-const recipeName = document.QuerySelectors('.recipe-name');
-const dishImg = document.QuerySelectors('.select-dish-img');
-const directions = document.QuerySelectors('.directions');
-const recipeCost = document.QuerySelectors('.recipe-cost');
-const listOfIngredients = document.QuerySelectors('.list-of-ingredients');
+const recipeList = document.querySelector('.recipe-list');
+const searchBox = document.querySelector('.search-box');
+const favoriteFilterBtn = document.querySelector('.filter-favorites-btn');
+const favoriteBtn = document.querySelector('.favorites-star');
+const recipeName = document.querySelector('.recipe-name');
+const dishImg = document.querySelector('.select-dish-img');
+const directions = document.querySelector('.directions');
+const recipeCost = document.querySelector('.recipe-cost');
+const listOfIngredients = document.querySelector('.list-of-ingredients');
 
 //EventListeners
-favoriteFilterBtn.addEventListener('click');
-favoriteBtn.addEventListener('click');
+// favoriteFilterBtn.addEventListener('click');
+// favoriteBtn.addEventListener('click');
+
 
 
 //Functions
 
 
+
+
+
+const viewAllRecipes = () => {
+ const result = recipeRepo.repo.map(eachRecipe => {
+  
+   const mealPreview = recipeList
+   mealPreview.innerHTML = `
+   <div class="meal-preview">
+     <img class="meal-img-preview" src="${eachRecipe.image}" alt="picture of food" />
+     <div class="meal-info-preview">
+       <h2>${eachRecipe.name}</h2>
+       <p class="meal-preview-cost">$${eachRecipe.totalCost}</p>
+       <div class="favorite-status"></div>
+     </div>
+   </div>`
+   return mealPreview;
+
+ });
+
+ return result;
+
+};
+viewAllRecipes()
+
+
+
+;
 //Helper Functions

@@ -15,11 +15,11 @@ class Recipe {
 
   getIngredientName(ingredList, ingredient){
     const data = ingredList;
-    
+
     const findName = data.filter((item) => {
       return [item.id].includes(ingredient.id);
     });
-    
+
     return findName[0].name;
   };
 
@@ -50,7 +50,7 @@ class Recipe {
     },0);
 
     // this.totalCost = totalCost;
-    return totalCost/100;
+    return (totalCost/100).toFixed(2);
   };
 
   getDirections() {
