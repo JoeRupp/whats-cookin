@@ -1,11 +1,88 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Whats Cookin</title>
+    <link rel="icon" href="./images/What'sCookinLogo-02.png"
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav>
+      <header>
+        <img
+          class="logo"
+          src="./images/What'sCookinLogo-01.png"
+          alt="What's cooking Logo"
+        />
+      </header>
+      <h2 class="recipe-title">Recipes</h2>
+      <form>
+        <input class="search-box" type="text" placeholder="Search" />
+        <button class="search-button">Favorites</button>
+      </form>
+      <section class="recipe-list">
+        <div class="first-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title1</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+        <div class="second-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title2</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+        <div class="third-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title3</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+        <div class="fourth-recipe">
+          <img src="./images/chicken-leg.png" alt="picture of food" />
+          <div>
+            <h3>Recipe Title4</h3>
+            <p>$10.00</p>
+            <button>Favorite</button>
+          </div>
+        </div>
+      </section>
+    </nav>
+    <section class="selected-recipe">
+      <section class="recipe">
+        <h2>Recipe Name</h2>
+        <img
+          class="selected-dish"
+          src="./images/chicken-leg.png"
+          alt="picture of food"
+        />
+        <h4>Directions</h4>
+        <div class="instructions">
+          <ol class="step-number">
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+          </ol>
+        </div>
+      </section>
+      <section class="recipe-details">
+        <h2>Price</h2>
+        <button>Favorite Button</button>
+        <div class="tags"></div>
+        <h4>Ingredients</h4>
+        <ul class="list-of-ingredients">
+          <li>Ingredients</li>
+        </ul>
+      </section>
+    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>

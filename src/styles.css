@@ -1,3 +1,123 @@
+/*UNIVERSAL---------------------*/
 body {
-  background-color: blueviolet;
+  background-color: #f0efef;
+  display: flex;
+}
+
+h2 {
+  border: solid 3px blue;
+  font-size: 90px;
+}
+
+h3 {
+  color: white;
+  font-size: 62px;
+}
+
+h4 {
+  color: black;
+  font-size: 62px;
+}
+
+p {
+  color: white;
+  font-size: 54px;
+}
+/*NAVIGATION--------------------*/
+nav {
+  background-color: #242424;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  border: solid 3px red;
+  width: 100%;
+}
+.recipe-title {
+  color: white;
+  margin-top: 20px;
+}
+
+form {
+  border: solid 3px yellow;
+  display: flex;
+  height: 60px;
+}
+
+.search-box {
+  height: 100%;
+  width: 80%;
+}
+
+.search-button {
+  font-size: 62px;
+}
+
+.recipe-list {
+  height: 75%;
+  overflow-y: scroll;
+  scrollbar-color: pink;
+  width: 100%;
+}
+
+.first-recipe,
+.second-recipe,
+.third-recipe,
+.fourth-recipe {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/*RECIPE------------------------*/
+
+.selected-recipe {
+  border: solid 7px orange;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.recipe {
+  border: solid 3px purple;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-dish {
+  width: 500px;
+}
+
+.instructions {
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.step-number {
+  border: solid 3px green;
+  font-size: 36px;
+  height: 700px;
+}
+
+.recipe-details {
+  border: solid 3px pink;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-of-ingredients {
+  border: solid 3px brown;
+  width: 100%;
+  height: 700px;
+  font-size: 30px;
 }
