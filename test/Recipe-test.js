@@ -103,7 +103,7 @@ describe("Recipe", () => {
   });
 
   it("Should store the total cost in the constructor in dollars", () => {
-    expect(recipe.totalCost).to.equal(9.76);
+    expect(recipe.totalCost).to.equal('9.76');
   });
 
   it("Should have a method that gets a modified ingredient list array using the Ingredient Class", () => {
