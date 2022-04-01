@@ -46,12 +46,18 @@ recipeList.addEventListener("click", function (event) {
 
 //Functions
 function searchRecipe() {
-  const tagSearcher = recipeRepo.filterRecipeTag(searchBox.value);
-  console.log(tagSearcher);
+  const tagSearched = recipeRepo.filterRecipeTag(searchBox.value);
+  viewAllRecipes(tagSearched);
+  console.log(viewAllRecipes(tagSearched));
+  if (viewAllRecipes(tagSearched) === []) {
+    const nameSearched = recipeRepo.filterRecipeName(searchBox.value);
+    viewAllRecipes(nameSearched);
+    console.log(!viewAllRecipes(tagSearched));
+  }
 }
 
-var viewAllRecipes = () => {
-  const result = recipeRepo.repo
+var viewAllRecipes = (list) => {
+  let result = list
     .map((eachRecipe) => {
       const mealPreview = `
    <div class="meal-preview" id="${eachRecipe.id}"> 
@@ -112,4 +118,4 @@ var displayRecipe = (recipe) => {
   changeRecipeIngred(recipe.ingredientList);
 };
 displayRecipe(recipeRepo.repo[0]);
-viewAllRecipes();
+viewAllRecipes(recipeRepo.repo);
