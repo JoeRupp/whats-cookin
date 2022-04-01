@@ -83,3 +83,21 @@ const changeRecipeDirections = (recipe) => {
   }).join('')
   return directions.innerHTML = instructions;
 };
+
+const changeRecipePrice = (recipe) => {
+  return recipeCost.innerHTML = `$${recipe}`
+};
+
+const changeRecipeIngred = (recipe) => {
+  const ingreds = recipe.map(eachIngred => `<li>${eachIngred.name}${eachIngred.unit}</li><br>`).join('')
+  return listOfIngredients.innerHTML = ingreds;
+};
+
+const displayRecipe = (recipe) => {
+  changeRecipeName(recipe.name)
+  changeRecipeDirections(recipe.instructions)
+  changeRecipeImage(recipe.image)
+  changeRecipePrice(recipe.totalCost)
+  changeRecipeIngred(recipe.ingredientList)
+};
+displayRecipe(recipeRepo.repo[0])
