@@ -15,11 +15,11 @@ class Recipe {
 
   getIngredientName(ingredList, ingredient){
     const data = ingredList;
-    
+
     const findName = data.filter((item) => {
       return [item.id].includes(ingredient.id);
     });
-    
+
     return findName[0].name;
   };
 
@@ -37,7 +37,7 @@ class Recipe {
     const ingredientList = this.ingredients.map((ingredient) => {
       const ingredName = this.getIngredientName(this.ingredData, ingredient);
       const ingredCost = this.getCostOfIngredients(this.ingredData, ingredient);
-      return new Ingredient(ingredient.id, ingredName, ingredCost, ingredient.quantity.unit);
+      return new Ingredient(ingredient.id, ingredName, ingredCost, ingredient.quantity.unit, ingredient.quantity.amount);
     });
 
     // this.ingredientList = ingredientList;
@@ -50,7 +50,7 @@ class Recipe {
     },0);
 
     // this.totalCost = totalCost;
-    return totalCost/100;
+    return (totalCost/100).toFixed(2);
   };
 
   getDirections() {
