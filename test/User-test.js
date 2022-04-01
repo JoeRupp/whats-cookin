@@ -117,4 +117,31 @@ describe("User", () => {
     expect(user.recipesToCook.length).to.equal(1);
   });
 
+  it("Should have a method that filters by tag", () => {
+    user.addToFavoriteRecipes(recipe);
+    const dataTest = user.filterFavoriteRecipeTag("snack");
+    
+    expect(dataTest.length).to.equal(1);
+  });
+
+  it("Should filter by tag even if user inputs all capitalized letters", () => {
+    user.addToFavoriteRecipes(recipe);
+    const dataTest = user.filterFavoriteRecipeTag("SNACK");
+    
+    expect(dataTest.length).to.equal(1);
+  });
+
+  it("Should have a method that filters by name", () => {
+    user.addToFavoriteRecipes(recipe);
+    const dataTest = user.filterFavoriteRecipeName("loaded chocolate chip pudding cookie cups");
+
+    expect(dataTest[0].name).to.equal(recipe.name);
+  });
+
+  it("Should filter by name even if user inputs all capitalized letters", () => {
+    user.addToFavoriteRecipes(recipe);
+    const dataTest = user.filterFavoriteRecipeName("LOADED CHOCOLATE CHIP PUDDING COOKIE CUPS");
+
+    expect(dataTest[0].name).to.equal(recipe.name);
+  });
 });

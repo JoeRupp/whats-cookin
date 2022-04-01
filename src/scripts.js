@@ -12,8 +12,6 @@ import "./images/star-icon-red.png";
 import "./images/star-icon-white.png";
 import "./images/star-icon-grey.png";
 
-console.log("Hello world");
-
 //GlobalVariables
 let ingredData = ingredients;
 let recipeData = recipes;
