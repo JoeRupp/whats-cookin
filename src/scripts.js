@@ -27,8 +27,8 @@ const searchBox = document.querySelector('.search-box');
 const favoriteFilterBtn = document.querySelector('.filter-favorites-btn');
 const favoriteBtn = document.querySelector('.favorites-star');
 const recipeName = document.querySelector('.recipe-name');
-const dishImg = document.querySelector('.select-dish-img');
-const directions = document.querySelector('.directions');
+const dishImg = document.querySelector('.selected-dish-img');
+const directions = document.querySelector('.step-number');
 const recipeCost = document.querySelector('.recipe-cost');
 const listOfIngredients = document.querySelector('.list-of-ingredients');
 
@@ -39,10 +39,6 @@ const listOfIngredients = document.querySelector('.list-of-ingredients');
 
 
 //Functions
-
-
-
-
 
 const viewAllRecipes = () => {
  const result = recipeRepo.repo.map(eachRecipe => {
@@ -58,15 +54,32 @@ const viewAllRecipes = () => {
    </div>`
    return mealPreview;
 
- });
+ }).join('')
  const mealInfo = recipeList
  mealInfo.innerHTML = result;
  return mealInfo;
-
 };
 viewAllRecipes()
 
 
 
-;
+
 //Helper Functions
+
+const changeRecipeName = (recipe) => {
+  return recipeName.innerHTML = recipe
+};
+
+
+const changeRecipeImage = (recipe) => {
+  return dishImg.src = recipe;
+};
+
+
+const changeRecipeDirections = (recipe) => {
+  const instructions = recipe.map(eachStep => {
+    const step = `<li>${eachStep.instruction}</li><br>`
+    return step;
+  }).join('')
+  return directions.innerHTML = instructions;
+};
