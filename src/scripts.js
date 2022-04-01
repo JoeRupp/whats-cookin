@@ -17,11 +17,12 @@ console.log("Hello world");
 //GlobalVariables
 let ingredData = ingredients;
 let recipeData = recipes;
-let recipeRepo = new RecipeRepository(ingredData, recipeData);
+var recipeRepo = new RecipeRepository(ingredData, recipeData);
 
 //QuerySelectors
 const recipeList = document.querySelector(".recipe-list");
 const searchBox = document.querySelector(".search-box");
+const searchButton = document.querySelector(".search-button");
 const favoriteFilterBtn = document.querySelector(".filter-favorites-btn");
 const favoriteBtn = document.querySelector(".favorites-star");
 const recipeName = document.querySelector(".recipe-name");
@@ -33,22 +34,23 @@ const listOfIngredients = document.querySelector(".list-of-ingredients");
 //EventListeners
 // favoriteFilterBtn.addEventListener('click');
 // favoriteBtn.addEventListener('click');
+searchBox.addEventListener("keypress", searchRecipe);
 
 recipeList.addEventListener("click", function (event) {
-  console.log(event);
-
   recipeRepo.repo.forEach((recipe) => {
-    console.log(event.target.parentNode.id === `${recipe.id}`);
     if (event.target.parentNode.id === `${recipe.id}`) {
-      console.log("steve");
       displayRecipe(recipe);
     }
   });
 });
 
 //Functions
+function searchRecipe() {
+  const tagSearcher = recipeRepo.filterRecipeTag(searchBox.value);
+  console.log(tagSearcher);
+}
 
-const viewAllRecipes = () => {
+var viewAllRecipes = () => {
   const result = recipeRepo.repo
     .map((eachRecipe) => {
       const mealPreview = `
@@ -67,7 +69,6 @@ const viewAllRecipes = () => {
   mealInfo.innerHTML = result;
   return mealInfo;
 };
-viewAllRecipes();
 
 //Helper Functions
 
@@ -103,7 +104,7 @@ const changeRecipeIngred = (recipe) => {
   return (listOfIngredients.innerHTML = ingreds);
 };
 
-const displayRecipe = (recipe) => {
+var displayRecipe = (recipe) => {
   changeRecipeName(recipe.name);
   changeRecipeDirections(recipe.instructions);
   changeRecipeImage(recipe.image);
@@ -111,3 +112,4 @@ const displayRecipe = (recipe) => {
   changeRecipeIngred(recipe.ingredientList);
 };
 displayRecipe(recipeRepo.repo[0]);
+viewAllRecipes();
