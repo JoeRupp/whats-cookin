@@ -89,7 +89,7 @@ const changeRecipePrice = (recipe) => {
 };
 
 const changeRecipeIngred = (recipe) => {
-  const ingreds = recipe.map(eachIngred => `<li>${eachIngred.name}${eachIngred.unit}</li><br>`).join('')
+  const ingreds = recipe.map(eachIngred => `<li>${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li><br>`).join('')
   return listOfIngredients.innerHTML = ingreds;
 };
 
