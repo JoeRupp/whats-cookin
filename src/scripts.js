@@ -30,6 +30,8 @@ const searchButton = document.querySelector(".search-button");
 const favoriteFilterBtn = document.querySelector(".filter-favorites-btn");
 const favoriteBtn = document.querySelector(".favorites-btn");
 const favoriteBtnStar = document.querySelector(".favorites-star");
+const filterAllBtn = document.querySelector(".filter-all-btn");
+const searchFavoritesBtn = document.querySelector(".search-favorites-button");
 const recipeName = document.querySelector(".recipe-name");
 const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
@@ -37,10 +39,12 @@ const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
 
 //EventListeners
-// favoriteFilterBtn.addEventListener('click');
+favoriteFilterBtn.addEventListener('click', viewFavoriteRecipes);
+filterAllBtn.addEventListener('click', allRecipes)
 favoriteBtn.addEventListener('click', favoriteRecipe);
-
 searchButton.addEventListener("click", searchRecipe);
+searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
+
 // searchBox.addEventListener("keypress", searchRecipe );
 
 recipeList.addEventListener("click", function (event) {
@@ -59,6 +63,20 @@ function favoriteRecipe() {
   };
 };
 
+function viewFavoriteRecipes() {
+  viewAllRecipes(currentUser.favoriteRecipes)
+  searchFavoritesBtn.classList.toggle('hidden')
+  searchButton.classList.toggle('hidden')
+  filterAllBtn.classList.remove('hidden')
+  favoriteFilterBtn.classList.add('hidden')
+}
+
+function allRecipes() {
+  viewAllRecipes(recipeRepo.repo)
+  filterAllBtn.classList.add('hidden')
+  favoriteFilterBtn.classList.remove('hidden')
+}
+
 //searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
 
 function searchRecipe() {
@@ -73,6 +91,21 @@ function searchRecipe() {
     viewAllRecipes(nameSearched);
   } else {
     viewAllRecipes(recipeRepo.repo)
+  }
+}
+
+function searchFavoriteRecipe() {
+  if (!searchBox.value) {
+    viewAllRecipes(currentUser.favoriteRecipes)
+  }
+  const tagSearched = currentUser.filterFavoriteRecipeTag(searchBox.value);
+  const nameSearched = currentUser.filterFavoriteRecipeName(searchBox.value);
+  if (tagSearched.length > 0) {
+    viewAllRecipes(tagSearched);
+  } else if (nameSearched.length > 0) {
+    viewAllRecipes(nameSearched);
+  } else {
+    viewAllRecipes(currentUser.favoriteRecipes)
   }
 }
 

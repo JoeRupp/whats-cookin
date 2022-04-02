@@ -222,3 +222,7 @@ h3 {
   width: 65%;
   font-size: 1em;
 }
+
+.hidden {
+  display: none;
+}
