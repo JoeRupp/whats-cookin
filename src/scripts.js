@@ -1,8 +1,10 @@
 import "./styles.css";
 import apiCalls from "./apiCalls";
 import RecipeRepository from "../src/classes/RecipeRepository";
+import User from "./classes/user";
 import recipes from "../src/data/recipes";
 import ingredients from "../src/data/ingredients";
+import users from "../src/data/users";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import "./images/What'sCookinLogo-01.png";
@@ -11,20 +13,29 @@ import "./images/chicken-leg.png";
 import "./images/star-icon-red.png";
 import "./images/star-icon-white.png";
 import "./images/star-icon-grey.png";
-
-console.log("Hello world");
+import "./images/addToCook.png";
 
 //GlobalVariables
 let ingredData = ingredients;
 let recipeData = recipes;
+let userData = users;
 var recipeRepo = new RecipeRepository(ingredData, recipeData);
+let currentUser = new User(userData[0]);
+let currentRecipe;
 
 //QuerySelectors
 const recipeList = document.querySelector(".recipe-list");
 const searchBox = document.querySelector(".search-box");
+
 const searchButton = document.querySelector(".search-button");
+const searchFavoritesBtn = document.querySelector(".search-favorites-button");
+
 const favoriteFilterBtn = document.querySelector(".filter-favorites-btn");
-const favoriteBtn = document.querySelector(".favorites-star");
+const filterAllBtn = document.querySelector(".filter-all-btn");
+
+const favoriteBtn = document.querySelector(".favorites-btn");
+const favoriteBtnStar = document.querySelector(".favorites-star");
+
 const recipeName = document.querySelector(".recipe-name");
 const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
@@ -32,9 +43,12 @@ const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
 
 //EventListeners
-// favoriteFilterBtn.addEventListener('click');
-// favoriteBtn.addEventListener('click');
-searchBox.addEventListener("keypress", searchRecipe);
+favoriteFilterBtn.addEventListener('click', viewFavoriteRecipes);
+filterAllBtn.addEventListener('click', allRecipes)
+searchButton.addEventListener("click", searchRecipe);
+searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
+
+favoriteBtn.addEventListener('click', favoriteRecipe);
 
 recipeList.addEventListener("click", function (event) {
   recipeRepo.repo.forEach((recipe) => {
@@ -45,14 +59,56 @@ recipeList.addEventListener("click", function (event) {
 });
 
 //Functions
+function favoriteRecipe() {
+  if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
+    currentUser.addToFavoriteRecipes(currentRecipe);
+    favoriteBtnStar.src = "./images/star-icon-red.png";
+  };
+};
+
+function viewFavoriteRecipes() {
+  viewAllRecipes(currentUser.favoriteRecipes)
+  searchFavoritesBtn.classList.toggle('hidden')
+  searchButton.classList.toggle('hidden')
+  filterAllBtn.classList.remove('hidden')
+  favoriteFilterBtn.classList.add('hidden')
+}
+
+function allRecipes() {
+  viewAllRecipes(recipeRepo.repo)
+  filterAllBtn.classList.toggle('hidden')
+  favoriteFilterBtn.classList.toggle('hidden')
+}
+
+//searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
+
 function searchRecipe() {
+  if (!searchBox.value) {
+    viewAllRecipes(recipeRepo.repo)
+  }
   const tagSearched = recipeRepo.filterRecipeTag(searchBox.value);
-  viewAllRecipes(tagSearched);
-  console.log(viewAllRecipes(tagSearched));
-  if (viewAllRecipes(tagSearched) === []) {
-    const nameSearched = recipeRepo.filterRecipeName(searchBox.value);
+  const nameSearched = recipeRepo.filterRecipeName(searchBox.value);
+  if (tagSearched.length > 0) {
+    viewAllRecipes(tagSearched);
+  } else if (nameSearched.length > 0) {
     viewAllRecipes(nameSearched);
-    console.log(!viewAllRecipes(tagSearched));
+  } else {
+    viewAllRecipes(recipeRepo.repo)
+  }
+}
+
+function searchFavoriteRecipe() {
+  if (!searchBox.value) {
+    viewAllRecipes(currentUser.favoriteRecipes)
+  }
+  const tagSearched = currentUser.filterFavoriteRecipeTag(searchBox.value);
+  const nameSearched = currentUser.filterFavoriteRecipeName(searchBox.value);
+  if (tagSearched.length > 0) {
+    viewAllRecipes(tagSearched);
+  } else if (nameSearched.length > 0) {
+    viewAllRecipes(nameSearched);
+  } else {
+    viewAllRecipes(currentUser.favoriteRecipes)
   }
 }
 
@@ -65,7 +121,6 @@ var viewAllRecipes = (list) => {
      <div class="meal-info-preview">
        <h2>${eachRecipe.name}</h2>
        <p class="meal-preview-cost">$${eachRecipe.totalCost}</p>
-       <div class="favorite-status"></div>
      </div>
    </div>`;
       return mealPreview;
@@ -116,6 +171,9 @@ var displayRecipe = (recipe) => {
   changeRecipeImage(recipe.image);
   changeRecipePrice(recipe.totalCost);
   changeRecipeIngred(recipe.ingredientList);
+  favoriteBtnStar.src = "./images/star-icon-grey.png";
+  currentRecipe = recipe;
 };
+
 displayRecipe(recipeRepo.repo[0]);
 viewAllRecipes(recipeRepo.repo);
