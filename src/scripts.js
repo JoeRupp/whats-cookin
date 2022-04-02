@@ -13,7 +13,7 @@ import "./images/chicken-leg.png";
 import "./images/star-icon-red.png";
 import "./images/star-icon-white.png";
 import "./images/star-icon-grey.png";
-
+import "./images/addToCook.png";
 
 //GlobalVariables
 let ingredData = ingredients;
@@ -26,12 +26,16 @@ let currentRecipe;
 //QuerySelectors
 const recipeList = document.querySelector(".recipe-list");
 const searchBox = document.querySelector(".search-box");
+
 const searchButton = document.querySelector(".search-button");
+const searchFavoritesBtn = document.querySelector(".search-favorites-button");
+
 const favoriteFilterBtn = document.querySelector(".filter-favorites-btn");
+const filterAllBtn = document.querySelector(".filter-all-btn");
+
 const favoriteBtn = document.querySelector(".favorites-btn");
 const favoriteBtnStar = document.querySelector(".favorites-star");
-const filterAllBtn = document.querySelector(".filter-all-btn");
-const searchFavoritesBtn = document.querySelector(".search-favorites-button");
+
 const recipeName = document.querySelector(".recipe-name");
 const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
@@ -41,11 +45,10 @@ const listOfIngredients = document.querySelector(".list-of-ingredients");
 //EventListeners
 favoriteFilterBtn.addEventListener('click', viewFavoriteRecipes);
 filterAllBtn.addEventListener('click', allRecipes)
-favoriteBtn.addEventListener('click', favoriteRecipe);
 searchButton.addEventListener("click", searchRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
 
-// searchBox.addEventListener("keypress", searchRecipe );
+favoriteBtn.addEventListener('click', favoriteRecipe);
 
 recipeList.addEventListener("click", function (event) {
   recipeRepo.repo.forEach((recipe) => {
@@ -73,8 +76,8 @@ function viewFavoriteRecipes() {
 
 function allRecipes() {
   viewAllRecipes(recipeRepo.repo)
-  filterAllBtn.classList.add('hidden')
-  favoriteFilterBtn.classList.remove('hidden')
+  filterAllBtn.classList.toggle('hidden')
+  favoriteFilterBtn.classList.toggle('hidden')
 }
 
 //searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
