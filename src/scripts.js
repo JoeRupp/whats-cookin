@@ -40,7 +40,8 @@ const listOfIngredients = document.querySelector(".list-of-ingredients");
 // favoriteFilterBtn.addEventListener('click');
 favoriteBtn.addEventListener('click', favoriteRecipe);
 
-searchBox.addEventListener("keypress", searchRecipe);
+searchButton.addEventListener("click", searchRecipe);
+// searchBox.addEventListener("keypress", searchRecipe );
 
 recipeList.addEventListener("click", function (event) {
   recipeRepo.repo.forEach((recipe) => {
@@ -58,15 +59,20 @@ function favoriteRecipe() {
   };
 };
 
+//searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
 
 function searchRecipe() {
+  if (!searchBox.value) {
+    viewAllRecipes(recipeRepo.repo)
+  }
   const tagSearched = recipeRepo.filterRecipeTag(searchBox.value);
-  viewAllRecipes(tagSearched);
-  console.log(viewAllRecipes(tagSearched));
-  if (viewAllRecipes(tagSearched) === []) {
-    const nameSearched = recipeRepo.filterRecipeName(searchBox.value);
+  const nameSearched = recipeRepo.filterRecipeName(searchBox.value);
+  if (tagSearched.length > 0) {
+    viewAllRecipes(tagSearched);
+  } else if (nameSearched.length > 0) {
     viewAllRecipes(nameSearched);
-    console.log(!viewAllRecipes(tagSearched));
+  } else {
+    viewAllRecipes(recipeRepo.repo)
   }
 }
 
@@ -129,6 +135,7 @@ var displayRecipe = (recipe) => {
   changeRecipeImage(recipe.image);
   changeRecipePrice(recipe.totalCost);
   changeRecipeIngred(recipe.ingredientList);
+  favoriteBtnStar.src = "./images/star-icon-grey.png";
   currentRecipe = recipe;
 };
 
