@@ -5,6 +5,7 @@ import User from "./classes/user";
 import recipes from "../src/data/recipes";
 import ingredients from "../src/data/ingredients";
 import users from "../src/data/users";
+import {fetchData} from "./apiCalls"
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import "./images/What'sCookinLogo-01.png";
@@ -16,11 +17,11 @@ import "./images/star-icon-grey.png";
 import "./images/addToCook.png";
 
 //GlobalVariables
-let ingredData = ingredients;
-let recipeData = recipes;
-let userData = users;
-var recipeRepo = new RecipeRepository(ingredData, recipeData);
-let currentUser = new User(userData[0]);
+let ingredData;
+let recipeData;
+let userData;
+var recipeRepo;
+let currentUser;
 let currentRecipe;
 
 //QuerySelectors
@@ -59,6 +60,28 @@ recipeList.addEventListener("click", function (event) {
 });
 
 //Functions
+function instantiateClasses(userData, ingredData, recipeData) {
+  recipeRepo = new RecipeRepository(ingredData, recipeData);
+  currentUser = new User(userData[0]);
+  displayRecipe(recipeRepo.repo[0]);
+  viewAllRecipes(recipeRepo.repo);
+};
+
+function fetchAllData() {
+  Promise.all([fetchData('users'), fetchData('ingredients'), fetchData('recipes')])
+    .then(data => {
+      userData = data[0].usersData
+      ingredData = data[1].ingredientsData
+      recipeData = data[2].recipeData
+      instantiateClasses(userData, ingredData, recipeData);
+  });
+};
+fetchAllData();
+
+
+
+
+
 function favoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
     currentUser.addToFavoriteRecipes(currentRecipe);
@@ -116,7 +139,7 @@ var viewAllRecipes = (list) => {
   let result = list
     .map((eachRecipe) => {
       const mealPreview = `
-   <div class="meal-preview" id="${eachRecipe.id}"> 
+   <div class="meal-preview" id="${eachRecipe.id}">
      <img class="meal-img-preview" src="${eachRecipe.image}" alt="picture of food" />
      <div class="meal-info-preview">
        <h2>${eachRecipe.name}</h2>
@@ -174,6 +197,3 @@ var displayRecipe = (recipe) => {
   favoriteBtnStar.src = "./images/star-icon-grey.png";
   currentRecipe = recipe;
 };
-
-displayRecipe(recipeRepo.repo[0]);
-viewAllRecipes(recipeRepo.repo);
