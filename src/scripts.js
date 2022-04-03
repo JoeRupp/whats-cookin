@@ -91,20 +91,11 @@ function favoriteRecipe() {
 function viewFavoriteRecipes() {
   viewAllRecipes(currentUser.favoriteRecipes);
   seeFavoritesView();
-  // searchFavoritesBtn.classList.remove("hidden");
-  // searchButton.classList.add("hidden");
-  // filterAllBtn.classList.remove("hidden");
-  // favoriteFilterBtn.classList.add("hidden");
 }
 
 function allRecipes() {
   viewAllRecipes(recipeRepo.repo);
   seeAllView();
-  // filterAllBtn.classList.add("hidden");
-  // favoriteFilterBtn.classList.remove("hidden");
-  // filterAllBtn.classList.add("hidden");
-  // searchButton.classList.remove("hidden");
-  // searchFavoritesBtn.classList.add("hidden");
 }
 
 //searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
