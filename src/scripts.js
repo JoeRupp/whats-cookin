@@ -10,6 +10,8 @@ import "./images/star-icon-red.png";
 import "./images/star-icon-white.png";
 import "./images/star-icon-grey.png";
 import "./images/addToCook.png";
+import "./images/cooklist-icon.png"
+import "./images/pantry-icon.png"
 
 //GlobalVariables
 let ingredData;
@@ -37,12 +39,18 @@ const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
 const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
+const error = document.querySelector(".error");
 
 //EventListeners
 favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
 filterAllBtn.addEventListener("click", displayAllRecipes);
 searchBtn.addEventListener("click", searchRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
+searchBox.addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) {
+    error.classList.remove('hidden')
+  }
+});
 
 favoriteBtn.addEventListener("click", addFavoriteRecipe);
 
@@ -105,6 +113,7 @@ function searchRecipe() {
   } else {
     viewAllRecipes(recipeRepo.repo);
   }
+  error.classList.add('hidden');
 }
 
 function searchFavoriteRecipe() {
@@ -120,6 +129,7 @@ function searchFavoriteRecipe() {
   } else {
     viewAllRecipes(currentUser.favoriteRecipes);
   }
+    error.classList.add('hidden');
 }
 
 const viewAllRecipes = (list) => {
