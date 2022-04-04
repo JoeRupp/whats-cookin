@@ -1,16 +1,11 @@
+//Imports
 import "./styles.css";
-import apiCalls from "./apiCalls";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/user";
-import recipes from "../src/data/recipes";
-import ingredients from "../src/data/ingredients";
-import users from "../src/data/users";
 import { fetchData } from "./apiCalls";
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import "./images/turing-logo.png";
+//Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
-import "./images/chicken-leg.png";
 import "./images/star-icon-red.png";
 import "./images/star-icon-white.png";
 import "./images/star-icon-grey.png";
@@ -20,7 +15,7 @@ import "./images/addToCook.png";
 let ingredData;
 let recipeData;
 let userData;
-var recipeRepo;
+let recipeRepo;
 let currentUser;
 let currentRecipe;
 
@@ -28,7 +23,7 @@ let currentRecipe;
 const recipeList = document.querySelector(".recipe-list");
 const searchBox = document.querySelector(".search-box");
 
-const searchButton = document.querySelector(".search-button");
+const searchBtn = document.querySelector(".search-button");
 const searchFavoritesBtn = document.querySelector(".search-favorites-button");
 
 const favoriteFilterBtn = document.querySelector(".filter-favorites-btn");
@@ -45,11 +40,11 @@ const listOfIngredients = document.querySelector(".list-of-ingredients");
 
 //EventListeners
 favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
-filterAllBtn.addEventListener("click", allRecipes);
-searchButton.addEventListener("click", searchRecipe);
+filterAllBtn.addEventListener("click", displayAllRecipes);
+searchBtn.addEventListener("click", searchRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
 
-favoriteBtn.addEventListener("click", favoriteRecipe);
+favoriteBtn.addEventListener("click", addFavoriteRecipe);
 
 recipeList.addEventListener("click", function (event) {
   recipeRepo.repo.forEach((recipe) => {
@@ -62,7 +57,7 @@ recipeList.addEventListener("click", function (event) {
 //Functions
 function instantiateClasses(userData, ingredData, recipeData) {
   recipeRepo = new RecipeRepository(ingredData, recipeData);
-  currentUser = new User(userData[0]);
+  currentUser = new User(userData[Math.floor( Math.random() * userData.length )]);
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
 }
@@ -81,24 +76,21 @@ function fetchAllData() {
 }
 fetchAllData();
 
-function favoriteRecipe() {
+function addFavoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
     currentUser.addToFavoriteRecipes(currentRecipe);
     favoriteBtnStar.src = "./images/star-icon-red.png";
   }
 }
-
 function viewFavoriteRecipes() {
   viewAllRecipes(currentUser.favoriteRecipes);
   seeFavoritesView();
 }
 
-function allRecipes() {
+function displayAllRecipes() {
   viewAllRecipes(recipeRepo.repo);
   seeAllView();
 }
-
-//searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
 
 function searchRecipe() {
   if (!searchBox.value) {
@@ -130,8 +122,8 @@ function searchFavoriteRecipe() {
   }
 }
 
-var viewAllRecipes = (list) => {
-  let result = list
+const viewAllRecipes = (list) => {
+  const result = list
     .map((eachRecipe) => {
       const mealPreview = `
    <div class="meal-preview" id="${eachRecipe.id}">
@@ -183,7 +175,7 @@ const changeRecipeIngred = (recipe) => {
   return (listOfIngredients.innerHTML = ingreds);
 };
 
-var displayRecipe = (recipe) => {
+const displayRecipe = (recipe) => {
   changeRecipeName(recipe.name);
   changeRecipeDirections(recipe.instructions);
   changeRecipeImage(recipe.image);
@@ -195,7 +187,7 @@ var displayRecipe = (recipe) => {
 
 const seeFavoritesView = () => {
   searchFavoritesBtn.classList.remove("hidden");
-  searchButton.classList.add("hidden");
+  searchBtn.classList.add("hidden");
   filterAllBtn.classList.remove("hidden");
   favoriteFilterBtn.classList.add("hidden");
 };
@@ -204,6 +196,6 @@ const seeAllView = () => {
   filterAllBtn.classList.add("hidden");
   favoriteFilterBtn.classList.remove("hidden");
   filterAllBtn.classList.add("hidden");
-  searchButton.classList.remove("hidden");
+  searchBtn.classList.remove("hidden");
   searchFavoritesBtn.classList.add("hidden");
 };
