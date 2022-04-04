@@ -4,22 +4,22 @@
 }
 
 body {
+  background-color: #f0efef;
   height: 100vh;
   margin: 0px;
-  background-color: #f0efef;
   display: flex;
 }
 
 /*NAVIGATION----------------------------------------------------------*/
 nav {
   background-color: #242424;
-  width: 40%;
-  border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .logo {
@@ -30,42 +30,42 @@ nav {
 h1 {
   color: white;
   font-size: 2em;
+  margin: 5vh 0vh 1vh;
   padding-left: 5%;
-  margin-top: 5vh;
-  margin-bottom: 1vh;
 }
 
 .form {
   height: 10%;
   padding-left: 5%;
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .search-box {
-  height: 30px; 
-  width: 200px;
   border-radius: 25px;
+  height: 30px;
+  width: 200px;
 }
 
 .search-favorites-button,
 .search-button {
-  border-radius: 25px;
-  height: 32px; 
   background-color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  height: 32px;
 }
 
 .filter-all-btn,
 .filter-favorites-btn {
-  max-height: 30px; 
-  width: 15vw;
+  cursor: pointer;
   margin-left: 10%;
+  max-height: 30px;
+  width: 15vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  cursor: pointer;
 }
 
 .filter-favorites-btn:hover {
@@ -78,8 +78,8 @@ h1 {
 }
 
 .filter-favorites-text {
-  font-size: 1em;
   color: white;
+  font-size: 1em;
   margin-left: 5%;
 }
 
@@ -87,21 +87,21 @@ h1 {
 
 .recipe-list {
   height: 75%;
-  padding: 5%;
   margin-bottom: 5%;
   overflow-y: scroll;
+  padding: 5%;
   scrollbar-color: black;
   width: 85%;
 }
 
 .meal-preview {
+  cursor: pointer;
   height: 30vh;
   margin-bottom: 5%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  cursor: pointer;
 }
 
 .meal-preview:hover {
@@ -129,10 +129,10 @@ h2 {
 }
 
 .favorite-status {
-  height: 30px;
-  width: 30px;
   background-image: url(./images/star-icon-white.png);
   background-size: cover;
+  height: 30px;
+  width: 30px;
 }
 
 /*MAIN DISPLAY --------------------------------------------------------*/
@@ -147,24 +147,23 @@ h2 {
 
 .recipe {
   height: 100%;
+  padding: 0% 2% 0% 8%;
   width: 62%;
-  padding-left: 8%;
-  padding-right: 2%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .recipe-name {
-  color: #F94A47;
-  padding: 0;
+  color: #f94a47;
   margin-top: 5vh;
+  padding: 0;
 }
 
 .dish-img-holder {
-  margin-top: 5%;
-  margin-bottom: 5%;
   height: 25vh;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .selected-dish-img {
@@ -178,10 +177,9 @@ h3 {
 
 .directions {
   height: 50vh;
-  width: 85%;
+  margin: 0 0 5%;
   overflow-y: scroll;
-  margin-top: 0;
-  margin-bottom: 5%;
+  width: 85%;
 }
 
 .step-number {
@@ -192,10 +190,10 @@ h3 {
 /*MAIN DISPLAY // RECIPE DETAILS ------------------------------------------*/
 
 .recipe-details {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
   height: 100%;
-  width: 38%;
-  box-shadow:rgba(0, 0, 0, 0.20) 0px 5px 15px;
   padding-left: 2%;
+  width: 38%;
   display: flex;
   flex-direction: column;
 }
@@ -205,16 +203,15 @@ h3 {
 }
 
 .recipe-buttons {
-  margin-top: 5%;
-  margin-bottom: 5%;
   height: 25vh;
+  margin: 5% 0%;
 }
 
 .addToCookList-btn,
 .favorites-btn {
-  max-height: 30px; 
-  width: 10vw;
   margin-bottom: 10%;
+  max-height: 30px;
+  width: 10vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -235,17 +232,17 @@ h3 {
 
 .add-to-cook-text,
 .favorites-text {
-  font-size: 1.5em;
   color: black;
+  font-size: 1.5em;
   margin-left: 5%;
 }
 
 .list-of-ingredients {
+  font-size: 1em;
   height: 50vh;
   margin: 0;
   overflow-y: scroll;
   width: 65%;
-  font-size: 1em;
 }
 
 .hidden {

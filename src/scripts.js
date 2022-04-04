@@ -5,7 +5,7 @@ import User from "./classes/user";
 import recipes from "../src/data/recipes";
 import ingredients from "../src/data/ingredients";
 import users from "../src/data/users";
-import {fetchData} from "./apiCalls"
+import { fetchData } from "./apiCalls";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import "./images/What'sCookinLogo-01.png";
@@ -44,12 +44,12 @@ const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
 
 //EventListeners
-favoriteFilterBtn.addEventListener('click', viewFavoriteRecipes);
-filterAllBtn.addEventListener('click', allRecipes)
+favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
+filterAllBtn.addEventListener("click", allRecipes);
 searchButton.addEventListener("click", searchRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
 
-favoriteBtn.addEventListener('click', favoriteRecipe);
+favoriteBtn.addEventListener("click", favoriteRecipe);
 
 recipeList.addEventListener("click", function (event) {
   recipeRepo.repo.forEach((recipe) => {
@@ -65,49 +65,44 @@ function instantiateClasses(userData, ingredData, recipeData) {
   currentUser = new User(userData[0]);
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
-};
+}
 
 function fetchAllData() {
-  Promise.all([fetchData('users'), fetchData('ingredients'), fetchData('recipes')])
-    .then(data => {
-      userData = data[0].usersData
-      ingredData = data[1].ingredientsData
-      recipeData = data[2].recipeData
-      instantiateClasses(userData, ingredData, recipeData);
+  Promise.all([
+    fetchData("users"),
+    fetchData("ingredients"),
+    fetchData("recipes"),
+  ]).then((data) => {
+    userData = data[0].usersData;
+    ingredData = data[1].ingredientsData;
+    recipeData = data[2].recipeData;
+    instantiateClasses(userData, ingredData, recipeData);
   });
-};
+}
 fetchAllData();
-
-
-
-
 
 function favoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
     currentUser.addToFavoriteRecipes(currentRecipe);
     favoriteBtnStar.src = "./images/star-icon-red.png";
-  };
-};
+  }
+}
 
 function viewFavoriteRecipes() {
-  viewAllRecipes(currentUser.favoriteRecipes)
-  searchFavoritesBtn.classList.toggle('hidden')
-  searchButton.classList.toggle('hidden')
-  filterAllBtn.classList.remove('hidden')
-  favoriteFilterBtn.classList.add('hidden')
+  viewAllRecipes(currentUser.favoriteRecipes);
+  seeFavoritesView();
 }
 
 function allRecipes() {
-  viewAllRecipes(recipeRepo.repo)
-  filterAllBtn.classList.toggle('hidden')
-  favoriteFilterBtn.classList.toggle('hidden')
+  viewAllRecipes(recipeRepo.repo);
+  seeAllView();
 }
 
 //searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
 
 function searchRecipe() {
   if (!searchBox.value) {
-    viewAllRecipes(recipeRepo.repo)
+    viewAllRecipes(recipeRepo.repo);
   }
   const tagSearched = recipeRepo.filterRecipeTag(searchBox.value);
   const nameSearched = recipeRepo.filterRecipeName(searchBox.value);
@@ -116,13 +111,13 @@ function searchRecipe() {
   } else if (nameSearched.length > 0) {
     viewAllRecipes(nameSearched);
   } else {
-    viewAllRecipes(recipeRepo.repo)
+    viewAllRecipes(recipeRepo.repo);
   }
 }
 
 function searchFavoriteRecipe() {
   if (!searchBox.value) {
-    viewAllRecipes(currentUser.favoriteRecipes)
+    viewAllRecipes(currentUser.favoriteRecipes);
   }
   const tagSearched = currentUser.filterFavoriteRecipeTag(searchBox.value);
   const nameSearched = currentUser.filterFavoriteRecipeName(searchBox.value);
@@ -131,7 +126,7 @@ function searchFavoriteRecipe() {
   } else if (nameSearched.length > 0) {
     viewAllRecipes(nameSearched);
   } else {
-    viewAllRecipes(currentUser.favoriteRecipes)
+    viewAllRecipes(currentUser.favoriteRecipes);
   }
 }
 
@@ -196,4 +191,19 @@ var displayRecipe = (recipe) => {
   changeRecipeIngred(recipe.ingredientList);
   favoriteBtnStar.src = "./images/star-icon-grey.png";
   currentRecipe = recipe;
+};
+
+const seeFavoritesView = () => {
+  searchFavoritesBtn.classList.remove("hidden");
+  searchButton.classList.add("hidden");
+  filterAllBtn.classList.remove("hidden");
+  favoriteFilterBtn.classList.add("hidden");
+};
+
+const seeAllView = () => {
+  filterAllBtn.classList.add("hidden");
+  favoriteFilterBtn.classList.remove("hidden");
+  filterAllBtn.classList.add("hidden");
+  searchButton.classList.remove("hidden");
+  searchFavoritesBtn.classList.add("hidden");
 };
