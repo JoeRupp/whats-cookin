@@ -1,4 +1,4 @@
-# What's Cookin'
+# What's Cookin' 🍳
 
 ## Overview:
 
