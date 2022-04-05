@@ -34,7 +34,8 @@ h1 {
   padding-left: 5%;
 }
 
-.form {
+.search,
+.nav-buttons {
   height: 10%;
   padding-left: 5%;
   display: flex;
@@ -45,7 +46,13 @@ h1 {
 .search-box {
   border-radius: 25px;
   height: 30px;
-  width: 200px;
+  width: 50%;
+}
+
+.error {
+  color: white;
+  margin-left: 10%;
+  width: 50%;
 }
 
 .search-favorites-button,
@@ -56,10 +63,12 @@ h1 {
   height: 32px;
 }
 
+.pantry-btn,
+.cook-list,
 .filter-all-btn,
 .filter-favorites-btn {
   cursor: pointer;
-  margin-left: 10%;
+  margin-right: 10px;
   max-height: 30px;
   width: 15vw;
   display: flex;
@@ -68,16 +77,19 @@ h1 {
   align-items: center;
 }
 
+.pantry-btn:hover,
+.cook-list:hover,
+.filter-all-btn:hover,
 .filter-favorites-btn:hover {
   transform: scale(1.15);
 }
 
-.filter-favorites-star {
+.btn-icons {
   height: 30px;
   width: 30px;
 }
 
-.filter-favorites-text {
+.btn-text {
   color: white;
   font-size: 1em;
   margin-left: 5%;
@@ -109,6 +121,7 @@ h1 {
 }
 
 .meal-img-preview {
+  border-radius: 25px;
   height: 80%;
   margin-left: 5%;
 }
@@ -167,6 +180,7 @@ h2 {
 }
 
 .selected-dish-img {
+  border-radius: 25px;
   height: 25vh;
 }
 
@@ -209,6 +223,7 @@ h3 {
 
 .addToCookList-btn,
 .favorites-btn {
+  cursor: pointer;
   margin-bottom: 10%;
   max-height: 30px;
   width: 10vw;
@@ -216,7 +231,6 @@ h3 {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  cursor: pointer;
 }
 
 .addToCookList-btn:hover,

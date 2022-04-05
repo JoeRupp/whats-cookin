@@ -1,55 +1,58 @@
+//Imports
 import "./styles.css";
-import apiCalls from "./apiCalls";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/user";
-import recipes from "../src/data/recipes";
-import ingredients from "../src/data/ingredients";
-import users from "../src/data/users";
 import { fetchData } from "./apiCalls";
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import "./images/turing-logo.png";
+//Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
-import "./images/chicken-leg.png";
 import "./images/star-icon-red.png";
 import "./images/star-icon-white.png";
 import "./images/star-icon-grey.png";
 import "./images/addToCook.png";
+import "./images/cooklist-icon.png"
+import "./images/pantry-icon.png"
 
 //GlobalVariables
 let ingredData;
 let recipeData;
 let userData;
-var recipeRepo;
+let recipeRepo;
 let currentUser;
 let currentRecipe;
 
 //QuerySelectors
 const recipeList = document.querySelector(".recipe-list");
 const searchBox = document.querySelector(".search-box");
-
-const searchButton = document.querySelector(".search-button");
+const searchBtn = document.querySelector(".search-button");
 const searchFavoritesBtn = document.querySelector(".search-favorites-button");
-
 const favoriteFilterBtn = document.querySelector(".filter-favorites-btn");
 const filterAllBtn = document.querySelector(".filter-all-btn");
-
 const favoriteBtn = document.querySelector(".favorites-btn");
 const favoriteBtnStar = document.querySelector(".favorites-star");
-
+const addToCookListBtn = document.querySelector(".addToCookList-btn");
+const cookListBtn = document.querySelector(".cook-list");
 const recipeName = document.querySelector(".recipe-name");
 const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
 const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
+const error = document.querySelector(".error");
 
 //EventListeners
 favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
-filterAllBtn.addEventListener("click", allRecipes);
-searchButton.addEventListener("click", searchRecipe);
+filterAllBtn.addEventListener("click", displayAllRecipes);
+searchBtn.addEventListener("click", searchRecipe);
+favoriteBtn.addEventListener("click", addFavoriteRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
+addToCookListBtn.addEventListener("click", addToCookList);
+cookListBtn.addEventListener("click", viewCookList);
 
-favoriteBtn.addEventListener("click", favoriteRecipe);
+searchBox.addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) {
+    error.classList.remove('hidden')
+  }
+});
 
 recipeList.addEventListener("click", function (event) {
   recipeRepo.repo.forEach((recipe) => {
@@ -62,7 +65,7 @@ recipeList.addEventListener("click", function (event) {
 //Functions
 function instantiateClasses(userData, ingredData, recipeData) {
   recipeRepo = new RecipeRepository(ingredData, recipeData);
-  currentUser = new User(userData[0]);
+  currentUser = new User(userData[Math.floor( Math.random() * userData.length )]);
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
 }
@@ -79,12 +82,19 @@ function fetchAllData() {
     instantiateClasses(userData, ingredData, recipeData);
   });
 }
+
 fetchAllData();
 
-function favoriteRecipe() {
+function addFavoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
     currentUser.addToFavoriteRecipes(currentRecipe);
     favoriteBtnStar.src = "./images/star-icon-red.png";
+  }
+}
+
+function addToCookList() {
+  if (!currentUser.recipesToCook.includes(currentRecipe)) {
+    currentUser.addToRecipesToCook(currentRecipe);
   }
 }
 
@@ -93,12 +103,16 @@ function viewFavoriteRecipes() {
   seeFavoritesView();
 }
 
-function allRecipes() {
+function viewCookList() {
+  viewAllRecipes(currentUser.recipesToCook);
+  seeFavoritesView();
+  favoriteFilterBtn.classList.remove("hidden");
+}
+
+function displayAllRecipes() {
   viewAllRecipes(recipeRepo.repo);
   seeAllView();
 }
-
-//searchBox.value === recipeRepo.forEach((recipe) => recipe.name)
 
 function searchRecipe() {
   if (!searchBox.value) {
@@ -113,6 +127,7 @@ function searchRecipe() {
   } else {
     viewAllRecipes(recipeRepo.repo);
   }
+  error.classList.add('hidden');
 }
 
 function searchFavoriteRecipe() {
@@ -128,10 +143,11 @@ function searchFavoriteRecipe() {
   } else {
     viewAllRecipes(currentUser.favoriteRecipes);
   }
+  error.classList.add('hidden');
 }
 
-var viewAllRecipes = (list) => {
-  let result = list
+const viewAllRecipes = (list) => {
+  const result = list
     .map((eachRecipe) => {
       const mealPreview = `
    <div class="meal-preview" id="${eachRecipe.id}">
@@ -150,7 +166,6 @@ var viewAllRecipes = (list) => {
 };
 
 //Helper Functions
-
 const changeRecipeName = (recipe) => {
   return (recipeName.innerHTML = recipe);
 };
@@ -183,27 +198,35 @@ const changeRecipeIngred = (recipe) => {
   return (listOfIngredients.innerHTML = ingreds);
 };
 
-var displayRecipe = (recipe) => {
+const displayRecipe = (recipe) => {
   changeRecipeName(recipe.name);
   changeRecipeDirections(recipe.instructions);
   changeRecipeImage(recipe.image);
   changeRecipePrice(recipe.totalCost);
   changeRecipeIngred(recipe.ingredientList);
   favoriteBtnStar.src = "./images/star-icon-grey.png";
+  showFavoriteStatus(recipe.name);
   currentRecipe = recipe;
+};
+
+const showFavoriteStatus = (recipe) => {
+  currentUser.favoriteRecipes.forEach(element => {
+    if(element.name.includes(recipe)){
+      favoriteBtnStar.src = "./images/star-icon-red.png";
+    }
+  })
 };
 
 const seeFavoritesView = () => {
   searchFavoritesBtn.classList.remove("hidden");
-  searchButton.classList.add("hidden");
+  searchBtn.classList.add("hidden");
   filterAllBtn.classList.remove("hidden");
   favoriteFilterBtn.classList.add("hidden");
 };
 
 const seeAllView = () => {
-  filterAllBtn.classList.add("hidden");
   favoriteFilterBtn.classList.remove("hidden");
   filterAllBtn.classList.add("hidden");
-  searchButton.classList.remove("hidden");
+  searchBtn.classList.remove("hidden");
   searchFavoritesBtn.classList.add("hidden");
 };

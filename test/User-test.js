@@ -1,6 +1,5 @@
 import { expect } from "chai";
 import User from "../src/classes/User";
-import data from "../src/data/users";
 
 describe("User", () => {
   let user;
@@ -120,14 +119,14 @@ describe("User", () => {
   it("Should have a method that filters by tag", () => {
     user.addToFavoriteRecipes(recipe);
     const dataTest = user.filterFavoriteRecipeTag("snack");
-    
+
     expect(dataTest.length).to.equal(1);
   });
 
   it("Should filter by tag even if user inputs all capitalized letters", () => {
     user.addToFavoriteRecipes(recipe);
     const dataTest = user.filterFavoriteRecipeTag("SNACK");
-    
+
     expect(dataTest.length).to.equal(1);
   });
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Whats Cookin</title>
-    <link rel="icon" href="./images/What'sCookinLogo-02.png" />
+    <link rel="icon" href="./images/What'sCookinLogo-02.png"/>
   </head>
   <body>
     <nav>
@@ -15,26 +15,48 @@
         />
       </header>
       <h1>Recipes</h1>
-      <section class="form">
-        <input class="search-box" type="text" placeholder="Search" />
+      <section class="search">
+        <input class="search-box" type="text" placeholder="Search by recipe name or tag"/>
         <button class="search-button">🔍</button>
         <button class="search-favorites-button hidden">🔍 Favorites</button>
+        <div class="error hidden">
+          <p>Click button to search ⚠️</p>
+        </div>
+      </section>
+      <section class="nav-buttons">
         <div class="filter-favorites-btn">
           <img
-            class="filter-favorites-star"
+            class="btn-icons"
             src="./images/star-icon-red.png"
-            alt="Favorites button"
+            alt="Favorites Button"
           />
-          <p class="filter-favorites-text">See Favorite Recipes</p>
+          <p class="btn-text">See Favorite Recipes</p>
         </div>
         <div class="filter-all-btn hidden">
           <img
-            class="filter-favorites-star"
+            class="btn-icons"
             src="./images/star-icon-white.png"
-            alt="Favorites button"
+            alt="All Recipe Button"
           />
-          <p class="filter-favorites-text">See All Recipes</p>
+          <p class="btn-text">See All Recipes</p>
         </div>
+        <div class="cook-list">
+          <img
+            class="btn-icons"
+            src="./images/cooklist-icon.png"
+            alt="Cook List Button"
+          />
+          <p class="btn-text">Cook List</p>
+        </div>
+      </div>
+      <div class="pantry-btn">
+        <img
+          class="btn-icons"
+          src="./images/pantry-icon.png"
+          alt="Pantry Button"
+        />
+        <p class="btn-text">Pantry</p>
+      </div>
       </section>
       <section class="recipe-list">
         <p>Sorry, we are having trouble loading the menu</p>
