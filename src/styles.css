@@ -68,6 +68,7 @@ h1 {
 .filter-all-btn,
 .filter-favorites-btn {
   cursor: pointer;
+  margin-right: 10px;
   max-height: 30px;
   width: 15vw;
   display: flex;
