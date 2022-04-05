@@ -56,6 +56,10 @@ For this project we sourced inspiration from Dribble creators, and also used our
 ### Search by name:
 ![Search by name](https://media0.giphy.com/media/EL6ueNVE7rktRRUCcm/giphy.gif)
 
+### Future Additions:
+- Add functionality to user pantry
+- Add functionality to cook list
+
 ## Contributors:
 - [Kendall McGree](https://github.com/kendallm360)
 - [Joe Rupp](https://github.com/JoeRupp)
