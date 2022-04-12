@@ -6,13 +6,20 @@ import { fetchData } from "./apiCalls";
 //Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
-import "./images/star-icon-red.png";
-import "./images/star-icon-white.png";
-import "./images/star-icon-grey.png";
-import "./images/addToCook.png";
-import "./images/cooklist-icon.png"
-import "./images/pantry-icon.png"
-
+import "./images/grey-cook-icon.png";
+import "./images/grey-cookbook-icon.png";
+import "./images/grey-cooklist-icon.png";
+import "./images/grey-pantry-icon.png";
+import "./images/grey-plus-icon.png";
+import "./images/grey-star-icon.png";
+import "./images/pan-logo.png";
+import "./images/red-cook-icon.png";
+import "./images/red-cookbook-icon.png";
+import "./images/red-cooklist-icon.png";
+import "./images/red-pantry-icon.png";
+import "./images/red-plus-icon.png";
+import "./images/red-star-icon.png";
+import "./images/white-star-icon.png";
 //GlobalVariables
 let ingredData;
 let recipeData;
@@ -88,7 +95,7 @@ fetchAllData();
 function addFavoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
     currentUser.addToFavoriteRecipes(currentRecipe);
-    favoriteBtnStar.src = "./images/star-icon-red.png";
+    favoriteBtnStar.src = "./images/red-star-icon.png";
   }
 }
 
@@ -204,7 +211,7 @@ const displayRecipe = (recipe) => {
   changeRecipeImage(recipe.image);
   changeRecipePrice(recipe.totalCost);
   changeRecipeIngred(recipe.ingredientList);
-  favoriteBtnStar.src = "./images/star-icon-grey.png";
+  favoriteBtnStar.src = "./images/grey-star-icon.png";
   showFavoriteStatus(recipe.name);
   currentRecipe = recipe;
 };
@@ -212,7 +219,7 @@ const displayRecipe = (recipe) => {
 const showFavoriteStatus = (recipe) => {
   currentUser.favoriteRecipes.forEach(element => {
     if(element.name.includes(recipe)){
-      favoriteBtnStar.src = "./images/star-icon-red.png";
+      favoriteBtnStar.src = "./images/red-star-icon.png";
     }
   })
 };
