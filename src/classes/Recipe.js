@@ -37,7 +37,7 @@ class Recipe {
     const ingredientList = this.ingredients.map((ingredient) => {
       const ingredName = this.getIngredientName(this.ingredData, ingredient);
       const ingredCost = this.getCostOfIngredients(this.ingredData, ingredient);
-      return new Ingredient(ingredient.id, ingredName, ingredCost, ingredient.quantity.unit, ingredient.quantity.amount);
+      return new Ingredient(ingredient.id, ingredName, ingredCost, ingredient.quantity.unit, ingredient.quantity.amount.toFixed(1));
     });
 
     // this.ingredientList = ingredientList;

@@ -6,12 +6,20 @@ import { fetchData } from "./apiCalls";
 //Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
-import "./images/star-icon-red.png";
-import "./images/star-icon-white.png";
-import "./images/star-icon-grey.png";
-import "./images/addToCook.png";
-import "./images/cooklist-icon.png"
-import "./images/pantry-icon.png"
+import "./images/grey-cook-icon.png";
+import "./images/grey-cookbook-icon.png";
+import "./images/grey-cooklist-icon.png";
+import "./images/grey-pantry-icon.png";
+import "./images/grey-plus-icon.png";
+import "./images/grey-star-icon.png";
+import "./images/pan-logo.png";
+import "./images/red-cook-icon.png";
+import "./images/red-cookbook-icon.png";
+import "./images/red-cooklist-icon.png";
+import "./images/red-pantry-icon.png";
+import "./images/red-plus-icon.png";
+import "./images/red-star-icon.png";
+import "./images/white-star-icon.png";
 
 //GlobalVariables
 let ingredData;
@@ -32,12 +40,19 @@ const favoriteBtn = document.querySelector(".favorites-btn");
 const favoriteBtnStar = document.querySelector(".favorites-star");
 const addToCookListBtn = document.querySelector(".addToCookList-btn");
 const cookListBtn = document.querySelector(".cook-list");
+const addToCookListIcon = document.querySelector(".addToCook-plus")
 const recipeName = document.querySelector(".recipe-name");
 const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
 const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
 const error = document.querySelector(".error");
+const starIcon = document.querySelector(".star-icon");
+const cooklistIcon = document.querySelector(".cooklist-icon");
+const pantryIcon = document.querySelector(".pantry-icon");
+const allRecipeIcon = document.querySelector(".all-recipe-icon");
+const pantryBtn = document.querySelector(".pantry-btn");
+const cookBtn = document.querySelector(".cook-btn");
 
 //EventListeners
 favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
@@ -47,6 +62,7 @@ favoriteBtn.addEventListener("click", addFavoriteRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
 addToCookListBtn.addEventListener("click", addToCookList);
 cookListBtn.addEventListener("click", viewCookList);
+pantryBtn.addEventListener("click", displayPantry)
 
 searchBox.addEventListener("keypress", function(event) {
   if (event.keyCode === 13) {
@@ -76,9 +92,9 @@ function fetchAllData() {
     fetchData("ingredients"),
     fetchData("recipes"),
   ]).then((data) => {
-    userData = data[0].usersData;
-    ingredData = data[1].ingredientsData;
-    recipeData = data[2].recipeData;
+    userData = data[0]
+    ingredData = data[1]
+    recipeData = data[2]
     instantiateClasses(userData, ingredData, recipeData);
   });
 }
@@ -88,30 +104,38 @@ fetchAllData();
 function addFavoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
     currentUser.addToFavoriteRecipes(currentRecipe);
-    favoriteBtnStar.src = "./images/star-icon-red.png";
+    favoriteBtnStar.src = "./images/red-star-icon.png";
   }
 }
 
 function addToCookList() {
   if (!currentUser.recipesToCook.includes(currentRecipe)) {
     currentUser.addToRecipesToCook(currentRecipe);
+    addToCookListIcon.src = "./images/red-cooklist-icon.png";
   }
+}
+
+function displayAllRecipes() {
+  viewAllRecipes(recipeRepo.repo);
+  displayRecipe(recipeRepo.repo[0]);
+  seeAllView();
 }
 
 function viewFavoriteRecipes() {
   viewAllRecipes(currentUser.favoriteRecipes);
   seeFavoritesView();
+  displayRecipe(currentUser.favoriteRecipes[0]);
 }
 
 function viewCookList() {
   viewAllRecipes(currentUser.recipesToCook);
-  seeFavoritesView();
-  favoriteFilterBtn.classList.remove("hidden");
+  seeCookListView();
+  displayRecipe(currentUser.recipesToCook[0]);
 }
 
-function displayAllRecipes() {
-  viewAllRecipes(recipeRepo.repo);
-  seeAllView();
+function displayPantry() {
+  // show pantry ingredients here
+  seePantryView();
 }
 
 function searchRecipe() {
@@ -204,15 +228,25 @@ const displayRecipe = (recipe) => {
   changeRecipeImage(recipe.image);
   changeRecipePrice(recipe.totalCost);
   changeRecipeIngred(recipe.ingredientList);
-  favoriteBtnStar.src = "./images/star-icon-grey.png";
+  favoriteBtnStar.src = "./images/grey-star-icon.png";
+  addToCookListIcon.src = "./images/grey-cooklist-icon.png";
   showFavoriteStatus(recipe.name);
+  showCookListStatus(recipe.name)
   currentRecipe = recipe;
 };
 
 const showFavoriteStatus = (recipe) => {
   currentUser.favoriteRecipes.forEach(element => {
     if(element.name.includes(recipe)){
-      favoriteBtnStar.src = "./images/star-icon-red.png";
+      favoriteBtnStar.src = "./images/red-star-icon.png";
+    }
+  })
+};
+
+const showCookListStatus = (recipe) => {
+  currentUser.recipesToCook.forEach(element => {
+    if(element.name.includes(recipe)){
+      addToCookListIcon.src = "./images/red-cooklist-icon.png";
     }
   })
 };
@@ -220,13 +254,38 @@ const showFavoriteStatus = (recipe) => {
 const seeFavoritesView = () => {
   searchFavoritesBtn.classList.remove("hidden");
   searchBtn.classList.add("hidden");
-  filterAllBtn.classList.remove("hidden");
-  favoriteFilterBtn.classList.add("hidden");
+  starIcon.src = "./images/red-star-icon.png";
+  allRecipeIcon.src = "./images/grey-cookbook-icon.png";
+  cooklistIcon.src = "./images/grey-cooklist-icon.png";
+  pantryIcon.src = "./images/grey-pantry-icon.png";
+  cookBtn.classList.add("hidden");
 };
 
 const seeAllView = () => {
-  favoriteFilterBtn.classList.remove("hidden");
-  filterAllBtn.classList.add("hidden");
   searchBtn.classList.remove("hidden");
   searchFavoritesBtn.classList.add("hidden");
+  starIcon.src = "./images/grey-star-icon.png";
+  allRecipeIcon.src = "./images/red-cookbook-icon.png";
+  cooklistIcon.src = "./images/grey-cooklist-icon.png";
+  pantryIcon.src = "./images/grey-pantry-icon.png";
+  cookBtn.classList.add("hidden");
 };
+
+const seeCookListView = () => {
+  searchFavoritesBtn.classList.add("hidden");
+  searchBtn.classList.add("hidden");
+  starIcon.src = "./images/grey-star-icon.png";
+  allRecipeIcon.src = "./images/grey-cookbook-icon.png";
+  cooklistIcon.src = "./images/red-cooklist-icon.png";
+  pantryIcon.src = "./images/grey-pantry-icon.png";
+  cookBtn.classList.remove("hidden");
+}
+
+const seePantryView = () => {
+  searchFavoritesBtn.classList.add("hidden");
+  searchBtn.classList.add("hidden");
+  starIcon.src = "./images/grey-star-icon.png";
+  allRecipeIcon.src = "./images/grey-cookbook-icon.png";
+  cooklistIcon.src = "./images/grey-cooklist-icon.png";
+  pantryIcon.src = "./images/red-pantry-icon.png";
+}

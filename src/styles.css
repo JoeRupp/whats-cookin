@@ -118,6 +118,7 @@ h1 {
 
 .meal-preview:hover {
   background-color: #383838;
+  border-radius: 25px;
 }
 
 .meal-img-preview {
@@ -142,7 +143,7 @@ h2 {
 }
 
 .favorite-status {
-  background-image: url(./images/star-icon-white.png);
+  background-image: url(./images/grey-star-icon.png);
   background-size: cover;
   height: 30px;
   width: 30px;
@@ -221,6 +222,7 @@ h3 {
   margin: 5% 0%;
 }
 
+.cook-btn,
 .addToCookList-btn,
 .favorites-btn {
   cursor: pointer;
@@ -233,17 +235,20 @@ h3 {
   align-items: center;
 }
 
+.cook-btn:hover,
 .addToCookList-btn:hover,
 .favorites-btn:hover {
   transform: scale(1.15);
 }
 
+.cook-recipe,
 .addToCook-plus,
 .favorites-star {
   height: 50px;
   width: 50px;
 }
 
+.cook-recipe-text,
 .add-to-cook-text,
 .favorites-text {
   color: black;
