@@ -3,7 +3,9 @@ import "./styles.css";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/user";
 import { fetchData } from "./apiCalls";
-//Images
+import Pantry from "./classes/Pantry"
+
+ //Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
 import "./images/grey-cook-icon.png";
@@ -27,6 +29,7 @@ let recipeData;
 let userData;
 let recipeRepo;
 let currentUser;
+let currentPantry;
 let currentRecipe;
 
 //QuerySelectors
@@ -82,6 +85,8 @@ recipeList.addEventListener("click", function (event) {
 function instantiateClasses(userData, ingredData, recipeData) {
   recipeRepo = new RecipeRepository(ingredData, recipeData);
   currentUser = new User(userData[Math.floor( Math.random() * userData.length )]);
+  currentPantry = new Pantry(currentUser.pantry, ingredData);
+ console.log(currentPantry)
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
 }
