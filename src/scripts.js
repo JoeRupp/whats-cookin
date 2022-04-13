@@ -52,7 +52,7 @@ const cooklistIcon = document.querySelector(".cooklist-icon");
 const pantryIcon = document.querySelector(".pantry-icon");
 const allRecipeIcon = document.querySelector(".all-recipe-icon");
 const pantryBtn = document.querySelector(".pantry-btn");
-const cookBtn = document.querySelector(".cook-btn")
+const cookBtn = document.querySelector(".cook-btn");
 
 //EventListeners
 favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
@@ -92,9 +92,9 @@ function fetchAllData() {
     fetchData("ingredients"),
     fetchData("recipes"),
   ]).then((data) => {
-    userData = data[0].usersData;
-    ingredData = data[1].ingredientsData;
-    recipeData = data[2].recipeData;
+    userData = data[0]
+    ingredData = data[1]
+    recipeData = data[2]
     instantiateClasses(userData, ingredData, recipeData);
   });
 }

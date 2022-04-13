@@ -1,5 +1,5 @@
 const fetchData = (extension) => {
-  return fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/${extension}`)
+  return fetch(`http://localhost:3001/api/v1/${extension}`)
     .then(response => response.json())
     .catch(err => console.log(err));
 };
