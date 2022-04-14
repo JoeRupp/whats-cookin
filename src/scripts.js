@@ -87,6 +87,7 @@ function instantiateClasses(userData, ingredData, recipeData) {
   currentUser = new User(userData[Math.floor( Math.random() * userData.length )]);
   currentPantry = new Pantry(currentUser.pantry, ingredData);
  console.log(currentPantry)
+
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
 }
@@ -238,6 +239,8 @@ const displayRecipe = (recipe) => {
   showFavoriteStatus(recipe.name);
   showCookListStatus(recipe.name)
   currentRecipe = recipe;
+  console.log(currentRecipe, "recipe")
+  console.log(currentPantry.attemptToCook(currentRecipe.ingredients), "currentPantry")
 };
 
 const showFavoriteStatus = (recipe) => {
