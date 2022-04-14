@@ -239,8 +239,9 @@ const displayRecipe = (recipe) => {
   showFavoriteStatus(recipe.name);
   showCookListStatus(recipe.name)
   currentRecipe = recipe;
-  console.log(currentRecipe, "recipe")
-  console.log(currentPantry.attemptToCook(currentRecipe.ingredients), "currentPantry")
+  console.log(currentPantry.pantryList, "recipe")
+  console.log(currentPantry.determineCookAbility(currentRecipe.ingredientList), "cookability")
+  console.log(currentPantry.findMissingIngredients(currentRecipe.ingredientList), "missing")
 };
 
 const showFavoriteStatus = (recipe) => {

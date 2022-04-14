@@ -28,8 +28,6 @@ class Pantry {
 
     getIngredientName(ingredList, ingredient){
         const data = ingredList;
-
-
         const findName = data.filter((item) => {
           return [item.id].includes(ingredient.ingredient);
         });
@@ -45,28 +43,35 @@ class Pantry {
         // this.ingredientList = ingredientList;
         return ingredientList;
       };
-// Determine whether a user’s pantry has enough 
-// ingredients to cook a given meal.
-attemptToCook(ingredientList){
-    // let list = [];
+
+    determineCookAbility(ingredientList){
     const pantry = this.pantryList.reduce((list, ingredient) => {
     let result = ingredientList.forEach(element => { 
-        // console.log(element.id)
-        if([element.id].includes(ingredient.id)) {
-            list.push(element)
+        if([element.id].includes(ingredient.id) && ingredient.amount >= [element.amount]) {
+            list.push(ingredient)
         }
-    //   return  element.id === ingredient.id
     })
-    // if(result.length > 1) {
-    // }
-    // return [item.id].includes(ingredientList.id)
     return list
 }, [])
-console.log(pantry, "pantry")
 return pantry
 }
-// Determine the amount of missing ingredients still needed
-//to cook a given meal, based on what’s in the user’s pantry.
+// Determine the amount of missing ingredients still needed to cook a given meal, 
+//based on what’s in the user’s pantry.
+
+    findMissingIngredients(ingredientList){
+    const missingIngredients = ingredientList.reduce((list, ingredient) => {
+    // let result = this.pantryList.forEach(element =>{
+        // if(!this.pantryList.includes(ingredient)) {
+        //     list.push(ingredient)
+        // }
+        if(!this.pantryList.includes(ingredient)) {
+            list.push(ingredient)
+        }
+   
+    return list
+}, [])
+return missingIngredients
+}
 
     
 }
