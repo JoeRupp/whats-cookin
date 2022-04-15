@@ -275,8 +275,18 @@ h3 {
   width: 65%;
 }
 
-.ingredient-state {
+.ingredient-state-false {
   cursor: pointer;
+  margin-right: 10px;
+  max-height: 25px;
+}
+
+.ingredient-state-false:hover {
+  /* src: url(./images/red-plus-icon.png); */
+  transform: scale(1.15);
+}
+
+.ingredient-state-true {
   margin-right: 10px;
   max-height: 25px;
 }
