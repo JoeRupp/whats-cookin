@@ -140,7 +140,8 @@ function viewCookList() {
 }
 
 function displayPantry() {
-  // show pantry ingredients here
+  viewPantry(currentPantry.pantryList);
+  console.log(currentPantry.pantryList)
   seePantryView();
 }
 
@@ -195,6 +196,23 @@ const viewAllRecipes = (list) => {
   return mealInfo;
 };
 
+const viewPantry = (list) => {
+  const result = list
+    .map((eachIngredient) => {
+      const mealPreview = `
+   <div class="pantry-preview" id="${eachIngredient.id}">
+     <div class="meal-info-preview">
+       <h2>${eachIngredient.name} (${eachIngredient.amount})</h2>
+     </div>
+   </div>`;
+      return mealPreview;
+    })
+    .join("");
+  const mealInfo = recipeList;
+  mealInfo.innerHTML = result;
+  return mealInfo;
+};
+
 //Helper Functions
 const changeRecipeName = (recipe) => {
   return (recipeName.innerHTML = recipe);
@@ -219,11 +237,14 @@ const changeRecipePrice = (recipe) => {
 };
 
 const changeRecipeIngred = (recipe) => {
-  const ingreds = recipe
-    .map(
-      (eachIngred) =>
-        `<li>${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li><br>`
-    )
+  const steve = currentPantry.determineCookAbility(recipe);
+  const ingreds = recipe.map((eachIngred) => {
+      if (steve.some((e) => e.id === eachIngred.id)) {
+        return `<li><img class="ingredient-state" src="./images/red-pantry-icon.png" alt="ingredient pantry status">${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li><br>`
+      } else {
+        return `<li><img class="ingredient-state" src="./images/grey-plus-icon.png" alt="ingredient pantry status">${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li><br>`
+      }
+    })
     .join("");
   return (listOfIngredients.innerHTML = ingreds);
 };
@@ -239,16 +260,6 @@ const displayRecipe = (recipe) => {
   showFavoriteStatus(recipe.name);
   showCookListStatus(recipe.name);
   currentRecipe = recipe;
-  console.log(currentPantry.pantryList, "recipe");
-  // console.log(currentPantry, "pantry")
-  console.log(
-    currentPantry.determineCookAbility(currentRecipe.ingredientList),
-    "cookability"
-  );
-  console.log(
-    currentPantry.findMissingIngredients(currentRecipe.ingredientList),
-    "missing"
-  );
 };
 
 const showFavoriteStatus = (recipe) => {
