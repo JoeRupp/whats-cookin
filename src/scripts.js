@@ -3,6 +3,8 @@ import "./styles.css";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/user";
 import { fetchData } from "./apiCalls";
+import Pantry from "./classes/Pantry";
+
 //Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
@@ -27,6 +29,7 @@ let recipeData;
 let userData;
 let recipeRepo;
 let currentUser;
+let currentPantry;
 let currentRecipe;
 
 //QuerySelectors
@@ -40,7 +43,7 @@ const favoriteBtn = document.querySelector(".favorites-btn");
 const favoriteBtnStar = document.querySelector(".favorites-star");
 const addToCookListBtn = document.querySelector(".addToCookList-btn");
 const cookListBtn = document.querySelector(".cook-list");
-const addToCookListIcon = document.querySelector(".addToCook-plus")
+const addToCookListIcon = document.querySelector(".addToCook-plus");
 const recipeName = document.querySelector(".recipe-name");
 const dishImg = document.querySelector(".selected-dish-img");
 const directions = document.querySelector(".step-number");
@@ -62,11 +65,11 @@ favoriteBtn.addEventListener("click", addFavoriteRecipe);
 searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
 addToCookListBtn.addEventListener("click", addToCookList);
 cookListBtn.addEventListener("click", viewCookList);
-pantryBtn.addEventListener("click", displayPantry)
+pantryBtn.addEventListener("click", displayPantry);
 
-searchBox.addEventListener("keypress", function(event) {
+searchBox.addEventListener("keypress", function (event) {
   if (event.keyCode === 13) {
-    error.classList.remove('hidden')
+    error.classList.remove("hidden");
   }
 });
 
@@ -81,7 +84,10 @@ recipeList.addEventListener("click", function (event) {
 //Functions
 function instantiateClasses(userData, ingredData, recipeData) {
   recipeRepo = new RecipeRepository(ingredData, recipeData);
-  currentUser = new User(userData[Math.floor( Math.random() * userData.length )]);
+  currentUser = new User(userData[Math.floor(Math.random() * userData.length)]);
+  currentPantry = new Pantry(currentUser.pantry, ingredData);
+  console.log(currentPantry);
+
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
 }
@@ -92,9 +98,9 @@ function fetchAllData() {
     fetchData("ingredients"),
     fetchData("recipes"),
   ]).then((data) => {
-    userData = data[0]
-    ingredData = data[1]
-    recipeData = data[2]
+    userData = data[0];
+    ingredData = data[1];
+    recipeData = data[2];
     instantiateClasses(userData, ingredData, recipeData);
   });
 }
@@ -151,7 +157,7 @@ function searchRecipe() {
   } else {
     viewAllRecipes(recipeRepo.repo);
   }
-  error.classList.add('hidden');
+  error.classList.add("hidden");
 }
 
 function searchFavoriteRecipe() {
@@ -167,7 +173,7 @@ function searchFavoriteRecipe() {
   } else {
     viewAllRecipes(currentUser.favoriteRecipes);
   }
-  error.classList.add('hidden');
+  error.classList.add("hidden");
 }
 
 const viewAllRecipes = (list) => {
@@ -231,24 +237,34 @@ const displayRecipe = (recipe) => {
   favoriteBtnStar.src = "./images/grey-star-icon.png";
   addToCookListIcon.src = "./images/grey-cooklist-icon.png";
   showFavoriteStatus(recipe.name);
-  showCookListStatus(recipe.name)
+  showCookListStatus(recipe.name);
   currentRecipe = recipe;
+  console.log(currentPantry.pantryList, "recipe");
+  // console.log(currentPantry, "pantry")
+  console.log(
+    currentPantry.determineCookAbility(currentRecipe.ingredientList),
+    "cookability"
+  );
+  console.log(
+    currentPantry.findMissingIngredients(currentRecipe.ingredientList),
+    "missing"
+  );
 };
 
 const showFavoriteStatus = (recipe) => {
-  currentUser.favoriteRecipes.forEach(element => {
-    if(element.name.includes(recipe)){
+  currentUser.favoriteRecipes.forEach((element) => {
+    if (element.name.includes(recipe)) {
       favoriteBtnStar.src = "./images/red-star-icon.png";
     }
-  })
+  });
 };
 
 const showCookListStatus = (recipe) => {
-  currentUser.recipesToCook.forEach(element => {
-    if(element.name.includes(recipe)){
+  currentUser.recipesToCook.forEach((element) => {
+    if (element.name.includes(recipe)) {
       addToCookListIcon.src = "./images/red-cooklist-icon.png";
     }
-  })
+  });
 };
 
 const seeFavoritesView = () => {
@@ -279,7 +295,7 @@ const seeCookListView = () => {
   cooklistIcon.src = "./images/red-cooklist-icon.png";
   pantryIcon.src = "./images/grey-pantry-icon.png";
   cookBtn.classList.remove("hidden");
-}
+};
 
 const seePantryView = () => {
   searchFavoritesBtn.classList.add("hidden");
@@ -288,4 +304,4 @@ const seePantryView = () => {
   allRecipeIcon.src = "./images/grey-cookbook-icon.png";
   cooklistIcon.src = "./images/grey-cooklist-icon.png";
   pantryIcon.src = "./images/red-pantry-icon.png";
-}
+};
