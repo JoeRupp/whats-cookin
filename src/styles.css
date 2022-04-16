@@ -116,6 +116,17 @@ h1 {
   align-items: center;
 }
 
+.pantry-preview {
+  cursor: pointer;
+  height: 15vh;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pantry-preview:hover,
 .meal-preview:hover {
   background-color: #383838;
   border-radius: 25px;
@@ -258,10 +269,36 @@ h3 {
 
 .list-of-ingredients {
   font-size: 1em;
-  height: 50vh;
+  height: 45vh;
   margin: 0;
   overflow-y: scroll;
   width: 65%;
+}
+
+.ingredient-state-false {
+  cursor: pointer;
+  margin-right: 10px;
+  max-height: 25px;
+}
+
+.ingredient-state-false:hover {
+  /* src: url(./images/red-plus-icon.png); */
+  transform: scale(1.15);
+}
+
+.ingredient-state-true {
+  margin-right: 10px;
+  max-height: 25px;
+}
+
+.legend {
+  height: 5vh;
+  margin-top: 25px;
+  padding-left: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .hidden {

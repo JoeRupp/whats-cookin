@@ -4,7 +4,7 @@ class Pantry {
   constructor(userIngredients, ingredientData) {
     this.ingredients = userIngredients;
     this.ingredientData = ingredientData;
-    this.pantryList = this.createIngredientList();
+    this.pantryList = this.createIngredientList()
   }
 
   getIngredientName(ingredList, ingredient) {
@@ -28,8 +28,8 @@ class Pantry {
         null,
         ingredient.amount
       );
-    });
-    return ingredientList;
+    }).sort((a, b) => a.name - b.name)
+    return ingredientList
   }
 
   determineCookAbility(ingredientList) {
@@ -60,5 +60,21 @@ class Pantry {
     });
     return ingredientList;
   }
+
+  cookWithIngredients(recipeIngredients) {
+    const cookShit = this.pantryList.forEach((ingredient) => {
+      recipeIngredients.forEach((e) => {
+        if (e.id === ingredient.id) {
+          ingredient.amount = ingredient.amount - e.amount;
+        }
+      })
+    })
+
+    this.pantryList = this.pantryList.filter((ingredient) => {
+      return ingredient.amount > 0
+    })
+  }
+      
+
 }
 export default Pantry;
