@@ -256,6 +256,7 @@ const displayRecipe = (recipe) => {
   showFavoriteStatus(recipe.name);
   showCookListStatus(recipe.name);
   currentRecipe = recipe;
+  showCookAbility();
 };
 
 const showFavoriteStatus = (recipe) => {
@@ -301,7 +302,7 @@ const seeCookListView = () => {
   allRecipeIcon.src = "./images/grey-cookbook-icon.png";
   cooklistIcon.src = "./images/red-cooklist-icon.png";
   pantryIcon.src = "./images/grey-pantry-icon.png";
-  cookBtn.classList.remove("hidden");
+  showCookAbility();
 };
 
 const seePantryView = () => {
@@ -312,6 +313,15 @@ const seePantryView = () => {
   cooklistIcon.src = "./images/grey-cooklist-icon.png";
   pantryIcon.src = "./images/red-pantry-icon.png";
 };
+
+const showCookAbility = () => {
+  const steve = currentPantry.determineCookAbility(currentRecipe.ingredientList).length
+  if (steve >= currentRecipe.ingredientList.length) {
+    cookBtn.classList.remove("hidden");
+  } else {
+    cookBtn.classList.add("hidden");
+  }
+}
 
 //EventListeners
 favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
@@ -328,6 +338,7 @@ listOfIngredients.addEventListener("click", function (event) {
     if (event.target.id === `${ingredient.id}`) {
       currentPantry.pantryList.push(ingredient);
       changeRecipeIngred(currentRecipe.ingredientList);
+      displayPantry();
     }
   });
 });
