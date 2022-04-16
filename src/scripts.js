@@ -5,6 +5,7 @@ import User from "./classes/user";
 import { fetchData } from "./apiCalls";
 import Pantry from "./classes/Pantry";
 
+
 //Images
 import "./images/What'sCookinLogo-01.png";
 import "./images/What'sCookinLogo-02.png";
@@ -23,6 +24,12 @@ import "./images/red-plus-icon.png";
 import "./images/red-star-icon.png";
 import "./images/white-star-icon.png";
 
+// //Dom Updates
+// import { displayAllRecipes } from "./domUpdates.js";
+// // displayAllRecipes();
+// import { viewFavoriteRecipes } from "./domUpdates.js"
+// viewFavoriteRecipes();
+import { seeFavoritesView } from "./domUpdates.js"
 //GlobalVariables
 let ingredData;
 let recipeData;
@@ -32,7 +39,7 @@ let currentUser;
 let currentPantry;
 let currentRecipe;
 
-//QuerySelectors
+// QuerySelectors
 const recipeList = document.querySelector(".recipe-list");
 const searchBox = document.querySelector(".search-box");
 const searchBtn = document.querySelector(".search-button");
@@ -50,36 +57,36 @@ const directions = document.querySelector(".step-number");
 const recipeCost = document.querySelector(".recipe-cost");
 const listOfIngredients = document.querySelector(".list-of-ingredients");
 const error = document.querySelector(".error");
-const starIcon = document.querySelector(".star-icon");
+// const starIcon = document.querySelector(".star-icon");
 const cooklistIcon = document.querySelector(".cooklist-icon");
 const pantryIcon = document.querySelector(".pantry-icon");
 const allRecipeIcon = document.querySelector(".all-recipe-icon");
 const pantryBtn = document.querySelector(".pantry-btn");
 const cookBtn = document.querySelector(".cook-btn");
 
-//EventListeners
-favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
-filterAllBtn.addEventListener("click", displayAllRecipes);
-searchBtn.addEventListener("click", searchRecipe);
-favoriteBtn.addEventListener("click", addFavoriteRecipe);
-searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
-addToCookListBtn.addEventListener("click", addToCookList);
-cookListBtn.addEventListener("click", viewCookList);
-pantryBtn.addEventListener("click", displayPantry);
-
-searchBox.addEventListener("keypress", function (event) {
-  if (event.keyCode === 13) {
-    error.classList.remove("hidden");
-  }
-});
-
-recipeList.addEventListener("click", function (event) {
-  recipeRepo.repo.forEach((recipe) => {
-    if (event.target.parentNode.id === `${recipe.id}`) {
-      displayRecipe(recipe);
-    }
-  });
-});
+// //EventListeners
+// favoriteFilterBtn.addEventListener("click", viewFavoriteRecipes);
+// filterAllBtn.addEventListener("click", displayAllRecipes);
+// searchBtn.addEventListener("click", searchRecipe);
+// favoriteBtn.addEventListener("click", addFavoriteRecipe);
+// searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
+// addToCookListBtn.addEventListener("click", addToCookList);
+// cookListBtn.addEventListener("click", viewCookList);
+// pantryBtn.addEventListener("click", displayPantry);
+//
+// searchBox.addEventListener("keypress", function (event) {
+//   if (event.keyCode === 13) {
+//     error.classList.remove("hidden");
+//   }
+// });
+//
+// recipeList.addEventListener("click", function (event) {
+//   recipeRepo.repo.forEach((recipe) => {
+//     if (event.target.parentNode.id === `${recipe.id}`) {
+//       displayRecipe(recipe);
+//     }
+//   });
+// });
 
 //Functions
 function instantiateClasses(userData, ingredData, recipeData) {
@@ -120,6 +127,8 @@ function addToCookList() {
     addToCookListIcon.src = "./images/red-cooklist-icon.png";
   }
 }
+
+
 
 function displayAllRecipes() {
   viewAllRecipes(recipeRepo.repo);
@@ -239,16 +248,6 @@ const displayRecipe = (recipe) => {
   showFavoriteStatus(recipe.name);
   showCookListStatus(recipe.name);
   currentRecipe = recipe;
-  console.log(currentPantry.pantryList, "recipe");
-  // console.log(currentPantry, "pantry")
-  console.log(
-    currentPantry.determineCookAbility(currentRecipe.ingredientList),
-    "cookability"
-  );
-  console.log(
-    currentPantry.findMissingIngredients(currentRecipe.ingredientList),
-    "missing"
-  );
 };
 
 const showFavoriteStatus = (recipe) => {
@@ -267,15 +266,15 @@ const showCookListStatus = (recipe) => {
   });
 };
 
-const seeFavoritesView = () => {
-  searchFavoritesBtn.classList.remove("hidden");
-  searchBtn.classList.add("hidden");
-  starIcon.src = "./images/red-star-icon.png";
-  allRecipeIcon.src = "./images/grey-cookbook-icon.png";
-  cooklistIcon.src = "./images/grey-cooklist-icon.png";
-  pantryIcon.src = "./images/grey-pantry-icon.png";
-  cookBtn.classList.add("hidden");
-};
+// const seeFavoritesView = () => {
+//   searchFavoritesBtn.classList.remove("hidden");
+//   searchBtn.classList.add("hidden");
+//   starIcon.src = "./images/red-star-icon.png";
+//   allRecipeIcon.src = "./images/grey-cookbook-icon.png";
+//   cooklistIcon.src = "./images/grey-cooklist-icon.png";
+//   pantryIcon.src = "./images/grey-pantry-icon.png";
+//   cookBtn.classList.add("hidden");
+// };
 
 const seeAllView = () => {
   searchBtn.classList.remove("hidden");
@@ -305,3 +304,30 @@ const seePantryView = () => {
   cooklistIcon.src = "./images/grey-cooklist-icon.png";
   pantryIcon.src = "./images/red-pantry-icon.png";
 };
+//EventListeners
+favoriteFilterBtn.addEventListener("click", function() {
+  viewFavoriteRecipes();
+});
+filterAllBtn.addEventListener("click", function() {
+  displayAllRecipes();
+});
+searchBtn.addEventListener("click", searchRecipe);
+favoriteBtn.addEventListener("click", addFavoriteRecipe);
+searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
+addToCookListBtn.addEventListener("click", addToCookList);
+cookListBtn.addEventListener("click", viewCookList);
+pantryBtn.addEventListener("click", displayPantry);
+
+searchBox.addEventListener("keypress", function (event) {
+  if (event.keyCode === 13) {
+    error.classList.remove("hidden");
+  }
+});
+
+recipeList.addEventListener("click", function (event) {
+  recipeRepo.repo.forEach((recipe) => {
+    if (event.target.parentNode.id === `${recipe.id}`) {
+      displayRecipe(recipe);
+    }
+  });
+});
