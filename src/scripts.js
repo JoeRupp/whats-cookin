@@ -63,8 +63,6 @@ function instantiateClasses(userData, ingredData, recipeData) {
   recipeRepo = new RecipeRepository(ingredData, recipeData);
   currentUser = new User(userData[Math.floor(Math.random() * userData.length)]);
   currentPantry = new Pantry(currentUser.pantry, ingredData);
-  console.log(currentPantry);
-
   displayRecipe(recipeRepo.repo[0]);
   viewAllRecipes(recipeRepo.repo);
 }
@@ -209,6 +207,16 @@ const viewErrorMessage = () => {
   return mealInfo;
 };
 
+const cookRecipe = () => {
+  currentPantry.cookWithIngredients(currentRecipe.ingredientList);
+  const currentRecipeIndex = currentUser.recipesToCook.findIndex((element) => {
+    return element.id === currentRecipe.id;
+  });
+  currentUser.recipesToCook.splice(currentRecipeIndex, 1);
+  console.log(currentRecipeIndex)
+  viewCookList()
+}
+
 //Helper Functions
 const changeRecipeName = (recipe) => {
   return (recipeName.innerHTML = recipe);
@@ -332,6 +340,7 @@ searchFavoritesBtn.addEventListener("click", searchFavoriteRecipe);
 addToCookListBtn.addEventListener("click", addToCookList);
 cookListBtn.addEventListener("click", viewCookList);
 pantryBtn.addEventListener("click", displayPantry);
+cookBtn.addEventListener("click", cookRecipe)
 
 listOfIngredients.addEventListener("click", function (event) {
   currentRecipe.ingredientList.forEach((ingredient) => {
