@@ -28,7 +28,7 @@ class Pantry {
         null,
         ingredient.amount
       );
-    });
+    }).sort((a, b) => a.name - b.name)
     return ingredientList
   }
 
@@ -69,7 +69,7 @@ class Pantry {
         }
       })
     })
-    
+
     this.pantryList = this.pantryList.filter((ingredient) => {
       return ingredient.amount > 0
     })
