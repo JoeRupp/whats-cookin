@@ -3,6 +3,7 @@ import "./styles.css";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/user";
 import { fetchData } from "./apiCalls";
+import { postData } from "./apiCalls";
 import Pantry from "./classes/Pantry";
 import domUpdates from "./domUpdates";
 
@@ -72,6 +73,26 @@ function fetchAllData() {
 }
 
 fetchAllData();
+
+function postAllData(ingredient, addIngred) {
+  if (addIngred === true) {
+    let data = {
+      userID: currentUser.id,
+      ingredientID: ingredient.id,
+      ingredientModification: (ingredient.amount)* 1
+    }
+    postData(data)
+  } else {
+    let data = {
+      userID: currentUser.id,
+      ingredientID: ingredient.id,
+      ingredientModification: -(ingredient.amount)
+    }
+    console.log("what?", ingredient)
+    console.log("whwwwhwhwhwhhhaaaa", -(ingredient.amount))
+    postData(data)
+  }
+}
 
 function addFavoriteRecipe() {
   if (!currentUser.favoriteRecipes.includes(currentRecipe)) {
@@ -152,6 +173,7 @@ function searchFavoriteRecipe() {
 }
 
 const cookRecipe = () => {
+  currentRecipe.ingredientList.forEach((ingredient) => postAllData(ingredient, false)) 
   currentPantry.cookWithIngredients(currentRecipe.ingredientList);
   const currentRecipeIndex = currentUser.recipesToCook.findIndex((element) => {
     return element.id === currentRecipe.id;
@@ -223,6 +245,9 @@ listOfIngredients.addEventListener("click", function (event) {
         currentRecipe.ingredientList,
         currentPantry.determineCookAbility(currentRecipe.ingredientList)
       );
+      console.log(currentUser)
+      console.log("add", ingredient)
+      postAllData(ingredient, true)
       displayPantry();
     }
   });
