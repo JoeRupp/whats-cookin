@@ -79,18 +79,16 @@ function postAllData(ingredient, addIngred) {
     let data = {
       userID: currentUser.id,
       ingredientID: ingredient.id,
-      ingredientModification: (ingredient.amount)* 1
-    }
-    postData(data)
+      ingredientModification: ingredient.amount * 1,
+    };
+    postData(data);
   } else {
     let data = {
       userID: currentUser.id,
       ingredientID: ingredient.id,
-      ingredientModification: -(ingredient.amount)
-    }
-    console.log("what?", ingredient)
-    console.log("whwwwhwhwhwhhhaaaa", -(ingredient.amount))
-    postData(data)
+      ingredientModification: -ingredient.amount,
+    };
+    postData(data);
   }
 }
 
@@ -173,7 +171,9 @@ function searchFavoriteRecipe() {
 }
 
 const cookRecipe = () => {
-  currentRecipe.ingredientList.forEach((ingredient) => postAllData(ingredient, false)) 
+  currentRecipe.ingredientList.forEach((ingredient) =>
+    postAllData(ingredient, false)
+  );
   currentPantry.cookWithIngredients(currentRecipe.ingredientList);
   const currentRecipeIndex = currentUser.recipesToCook.findIndex((element) => {
     return element.id === currentRecipe.id;
@@ -245,9 +245,7 @@ listOfIngredients.addEventListener("click", function (event) {
         currentRecipe.ingredientList,
         currentPantry.determineCookAbility(currentRecipe.ingredientList)
       );
-      console.log(currentUser)
-      console.log("add", ingredient)
-      postAllData(ingredient, true)
+      postAllData(ingredient, true);
       displayPantry();
     }
   });

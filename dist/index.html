@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
     <meta charset="UTF-8" />
     <title>Whats Cookin</title>
     <link rel="icon" href="./images/pan-logo.png"/>
@@ -16,7 +17,8 @@
       </header>
       <h1>Recipes</h1>
       <section class="search">
-        <input class="search-box" type="text" placeholder="Search by recipe name or tag"/>
+        <label class="hidden" for="searchBar"> Search by recipe name or tag</label>
+        <input class="search-box" type="text" placeholder="Search by recipe name or tag" id="searchBar" role="search" />
         <button class="search-button">🔍</button>
         <button class="search-favorites-button hidden">🔍 Favorites</button>
         <div class="error hidden">
@@ -24,7 +26,7 @@
         </div>
       </section>
       <section class="nav-buttons">
-        <div class="filter-all-btn">
+        <div class="filter-all-btn" role="button">
           <img
             class="btn-icons all-recipe-icon"
             src="./images/red-cookbook-icon.png"
@@ -32,7 +34,7 @@
           />
           <p class="btn-text">All Recipes</p>
         </div>
-        <div class="filter-favorites-btn">
+        <div class="filter-favorites-btn"  role="button">
           <img
             class="btn-icons star-icon"
             src="./images/grey-star-icon.png"
@@ -40,7 +42,7 @@
           />
           <p class="btn-text">Favorites</p>
         </div>
-        <div class="cook-list">
+        <div class="cook-list"  role="button">
           <img
             class="btn-icons cooklist-icon"
             src="./images/grey-cooklist-icon.png"
@@ -49,7 +51,7 @@
           <p class="btn-text">Cook List</p>
         </div>
       </div>
-      <div class="pantry-btn">
+      <div class="pantry-btn"  role="button">
         <img
           class="btn-icons pantry-icon"
           src="./images/grey-pantry-icon.png"
@@ -82,7 +84,7 @@
       <section class="recipe-details">
         <h3 class="recipe-cost">$0.00</h3>
         <div class="recipe-buttons">
-          <div class="favorites-btn">
+          <div class="favorites-btn"  role="button">
             <img
               class="favorites-star"
               src="./images/grey-star-icon.png"
@@ -90,7 +92,7 @@
             />
             <p class="favorites-text">Favorite</p>
           </div>
-          <div class="addToCookList-btn">
+          <div class="addToCookList-btn"  role="button">
             <img
               class="addToCook-plus"
               src="./images/grey-cooklist-icon.png"
@@ -98,7 +100,7 @@
             />
             <p class="add-to-cook-text">Cook List</p>
           </div>
-          <div class="cook-btn hidden">
+          <div class="cook-btn hidden"  role="button">
             <img
               class="cook-recipe"
               src="./images/grey-cook-icon.png"
