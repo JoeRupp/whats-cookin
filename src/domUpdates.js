@@ -17,7 +17,7 @@ let domUpdates = {
     const result = list
       .map((eachRecipe) => {
         const mealPreview = `
-       <div class="meal-preview" id="${eachRecipe.id}">
+       <div class="meal-preview" id="${eachRecipe.id}" role="button">
          <img class="meal-img-preview" src="${eachRecipe.image}" alt="picture of food" />
          <div class="meal-info-preview">
            <h2>${eachRecipe.name}</h2>
@@ -37,7 +37,7 @@ let domUpdates = {
     const result = list
       .map((eachIngredient) => {
         const mealPreview = `
-       <div class="pantry-preview" id="${eachIngredient.id}">
+       <div class="pantry-preview" id="${eachIngredient.id}" aria-label = "An ingredient included within the user's pantry">
          <div class="meal-info-preview">
            <h2>${eachIngredient.name} (${eachIngredient.amount})</h2>
          </div>
@@ -121,7 +121,7 @@ let domUpdates = {
     const directions = document.querySelector(".step-number");
     const instructions = recipe
       .map((eachStep) => {
-        const step = `<li>${eachStep.instruction}</li><br>`;
+        const step = `<li class="step-items">${eachStep.instruction}</li>`;
         return step;
       })
       .join("");
@@ -182,9 +182,9 @@ let domUpdates = {
     const ingreds = recipe
       .map((eachIngred) => {
         if (pantryContents.some((e) => e.id === eachIngred.id)) {
-          return `<li><img class="ingredient-state-true" id="${eachIngred.id}" src="./images/red-pantry-icon.png" alt="ingredient pantry status">${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li><br>`;
+          return `<li class="ingredient-item"><img class="ingredient-state-true" id="${eachIngred.id}" src="./images/red-pantry-icon.png" alt="ingredient pantry status"  role="button">${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li>`;
         } else {
-          return `<li><img class="ingredient-state-false" id="${eachIngred.id}" src="./images/grey-plus-icon.png" alt="ingredient pantry status">${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li><br>`;
+          return `<li class="ingredient-item"><img class="ingredient-state-false" id="${eachIngred.id}" src="./images/grey-plus-icon.png" alt="ingredient pantry status"  role="button">${eachIngred.name} - ${eachIngred.amount} ${eachIngred.unit}</li>`;
         }
       })
       .join("");

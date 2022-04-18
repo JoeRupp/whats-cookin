@@ -213,6 +213,10 @@ h3 {
   margin-top: 0;
 }
 
+.step-items {
+  margin-bottom: 10px;
+}
+
 /*MAIN DISPLAY // RECIPE DETAILS ------------------------------------------*/
 
 .recipe-details {
@@ -282,13 +286,16 @@ h3 {
 }
 
 .ingredient-state-false:hover {
-  /* src: url(./images/red-plus-icon.png); */
   transform: scale(1.15);
 }
 
 .ingredient-state-true {
   margin-right: 10px;
   max-height: 25px;
+}
+
+.ingredient-item {
+  margin-bottom: 10px;
 }
 
 .legend {
