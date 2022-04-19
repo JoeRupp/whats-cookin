@@ -67,6 +67,15 @@ For this project we sourced inspiration from Dribble creators, and also used our
 ### Search by name:
 ![Search by name](https://media0.giphy.com/media/EL6ueNVE7rktRRUCcm/giphy.gif)
 
+### Favorite a Recipe:
+![Favorite a Recipe](https://media.giphy.com/media/fi09jYMSMgnxqzWREX/giphy.gif)
+
+### Add Ingredients to Cooklist:
+![Add Ingredients to Cooklist](https://media.giphy.com/media/I1QEllV151OoXtxXyZ/giphy.gif)
+
+### Search by Tag and Name:
+![Search by Tag and Name](https://media.giphy.com/media/XMOltET6Zff6Xk7Kb0/giphy.gif)
+
 ### Future Additions:
 - add Drop down for TAGS
 - better search functionality
