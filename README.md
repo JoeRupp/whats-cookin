@@ -22,6 +22,12 @@ What's Cookin' is a Front-End project from the Mod 2 curriculum at Turing School
 - Write modular, reusable code that follows SRP (Single Responsibility Principle)
 - Implement a robust testing suite using TDD
 - Make network requests to retrieve data
+- Work with a local server and make network requests to API endpoints to retrieve and manipulate data
+- Refactor your code to DRY up repetitive logic
+- Ensure your app follows best practices for accessibility
+- Practice talking about your code and high level technical concepts
+- Implement feedback to improve product and process.
+
 
 The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
 
@@ -33,14 +39,19 @@ The details of this project are outlined in the <a href="https://frontend.turing
 - HTML
 - VS Code & Atom
 - Adobe illustrator
+- Lighthouse
+- WAVE evaluation tool (chrome extension)
 
 ## Challenges:
 - Search bar functionality of this application was difficult to implement due to the fact it had to be able to search by name or tag.
 - Initial setup with class structure
+- Pantry class integration
+- Refactoring the code to separate the DOM manipulation into its own file  
 
 ## Wins:
 - UX/UI layout
 - Our initial planning and design layout set us up for success.
+- Team work
 
 ## Testing:
 Mocha and chai are already set up, with a boilerplate test for you.
@@ -57,8 +68,9 @@ For this project we sourced inspiration from Dribble creators, and also used our
 ![Search by name](https://media0.giphy.com/media/EL6ueNVE7rktRRUCcm/giphy.gif)
 
 ### Future Additions:
-- Add functionality to user pantry
-- Add functionality to cook list
+- add Drop down for TAGS
+- better search functionality
+- add dyslexia accessibility button that toggles sites font to be reader friendly 
 
 ## Contributors:
 - [Kendall McGree](https://github.com/kendallm360)

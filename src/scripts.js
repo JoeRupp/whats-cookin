@@ -2,8 +2,12 @@
 import "./styles.css";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/user";
-import { fetchData } from "./apiCalls";
-import { postData } from "./apiCalls";
+import {
+  fetchData
+} from "./apiCalls";
+import {
+  postData
+} from "./apiCalls";
 import Pantry from "./classes/Pantry";
 import domUpdates from "./domUpdates";
 
@@ -71,7 +75,6 @@ function fetchAllData() {
     instantiateClasses(userData, ingredData, recipeData);
   });
 }
-
 fetchAllData();
 
 function postAllData(ingredient, addIngred) {
@@ -237,7 +240,7 @@ cookListBtn.addEventListener("click", viewCookList);
 pantryBtn.addEventListener("click", displayPantry);
 cookBtn.addEventListener("click", cookRecipe);
 
-listOfIngredients.addEventListener("click", function (event) {
+listOfIngredients.addEventListener("click", function(event) {
   currentRecipe.ingredientList.forEach((ingredient) => {
     if (event.target.id === `${ingredient.id}`) {
       currentPantry.pantryList.push(ingredient);
@@ -251,13 +254,13 @@ listOfIngredients.addEventListener("click", function (event) {
   });
 });
 
-searchBox.addEventListener("keypress", function (event) {
+searchBox.addEventListener("keypress", function(event) {
   if (event.keyCode === 13) {
     domUpdates.toggleErrorMessage(false);
   }
 });
 
-recipeList.addEventListener("click", function (event) {
+recipeList.addEventListener("click", function(event) {
   recipeRepo.repo.forEach((recipe) => {
     if (event.target.parentNode.id === `${recipe.id}`) {
       displayRecipe(recipe);

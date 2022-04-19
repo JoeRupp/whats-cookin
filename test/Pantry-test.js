@@ -1,4 +1,6 @@
-import { expect } from "chai";
+import {
+  expect
+} from "chai";
 import Pantry from "../src/classes/Pantry";
 
 describe("Pantry", () => {
@@ -8,8 +10,7 @@ describe("Pantry", () => {
   let recipeIngredientList;
 
   beforeEach(() => {
-    userIngredients = [
-      {
+    userIngredients = [{
         ingredient: 20081,
         amount: 4,
       },
@@ -31,8 +32,7 @@ describe("Pantry", () => {
       },
     ];
 
-    ingredientData = [
-      {
+    ingredientData = [{
         id: 20081,
         name: "wheat flour",
         estimatedCostInCents: 142,
@@ -59,16 +59,27 @@ describe("Pantry", () => {
       },
     ];
 
-    recipeIngredientList = [
-      {
+    recipeIngredientList = [{
         id: 20081,
         name: "wheat flour",
         estCost: 213,
         unit: "c",
         amount: "1.5",
       },
-      { id: 1082047, name: "salt", estCost: 140, unit: "tsp", amount: "1" },
-      { id: 1123, name: "vanilla", estCost: 463, unit: "tsp", amount: "5" },
+      {
+        id: 1082047,
+        name: "salt",
+        estCost: 140,
+        unit: "tsp",
+        amount: "1"
+      },
+      {
+        id: 1123,
+        name: "vanilla",
+        estCost: 463,
+        unit: "tsp",
+        amount: "5"
+      },
     ];
 
     pantry = new Pantry(userIngredients, ingredientData);

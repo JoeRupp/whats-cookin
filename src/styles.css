@@ -96,7 +96,6 @@ h1 {
 }
 
 /*NAVIGATION // RECIPE LIST-------------------------------------------*/
-
 .recipe-list {
   height: 75%;
   margin-bottom: 5%;
@@ -161,7 +160,6 @@ h2 {
 }
 
 /*MAIN DISPLAY --------------------------------------------------------*/
-
 .selected-recipe {
   width: 60%;
   display: flex;
@@ -169,7 +167,6 @@ h2 {
 }
 
 /*MAIN DISPLAY // RECIPE ----------------------------------------------*/
-
 .recipe {
   height: 100%;
   padding: 0% 2% 0% 8%;
@@ -218,7 +215,6 @@ h3 {
 }
 
 /*MAIN DISPLAY // RECIPE DETAILS ------------------------------------------*/
-
 .recipe-details {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
   height: 100%;
