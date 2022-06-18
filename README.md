@@ -2,20 +2,34 @@
 
 ## Overview:
 
-What's Cookin' is a Front-End project from the Mod 2 curriculum at Turing School of Software & Design. Given a URL that contained datasets for allUsers, allIngredients, and allRecipes we used the Fetch API to retrieve data and update the DOM. The concepts introduced during the course of this project included webpack, network requests and responses, and Test Driven Development.
+What's Cookin' is a Front-end group project from the Mod 2 curriculum at Turing School of Software & Design. Datasets for Users, Ingredients, and Recipes are retrieved from a RESTful API using fetch requests. This data is then manipulated through a series class to class interactions to be displayed to the DOM for users to interact with. The concepts introduced during the course of this project included Webpack, network requests/responses, and Test Driven Development.
+
+[Original project spec](https://frontend.turing.edu/projects/What%27sCookin-PartOne.html)
+
+
+### Application in Action:
+Favorite a Recipe:
+
+![Favorite a Recipe](https://media.giphy.com/media/fi09jYMSMgnxqzWREX/giphy.gif)
+
+Add Ingredients to Cooklist:
+
+![Add Ingredients to Cooklist](https://media.giphy.com/media/I1QEllV151OoXtxXyZ/giphy.gif)
+
+Search by Tag and Name:
+
+![Search by Tag and Name](https://media.giphy.com/media/XMOltET6Zff6Xk7Kb0/giphy.gif)
 
 ## Set Up:
-1. Fork the repository
-2. Clone down your new, forked repo
-3. 'cd' into the repository
-4. Run `npm install` in the CLI
-5. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
-6. Run `npm start` in the CLI
-7. Open the site by copying and pasting the server location in your URL bar
+1. Clone this repository to your local machine.
+2. `cd` into the repository.
+3. Run `npm install` to install all the project dependencies.
+4. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version.
+5. Run `npm start` to run the application. 
+6. Open the site by copying and pasting the server location in your URL bar
   - The server location should look something like this --> http://localhost:8080
 
 ## Goals:
-
 - Implement ES6 classes that communicate to each other as needed
 - Use object and array prototype methods to perform data manipulation
 - Create a user interface that is easy to use and clearly displays information.
@@ -28,19 +42,15 @@ What's Cookin' is a Front-End project from the Mod 2 curriculum at Turing School
 - Practice talking about your code and high level technical concepts
 - Implement feedback to improve product and process.
 
-
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
-
-## Tech used:
+## Technologies
 - JavaScript
-- Mocha
-- Chai
+- Mocha/Chai
 - CSS
 - HTML
 - VS Code & Atom
 - Adobe illustrator
 - Lighthouse
-- WAVE evaluation tool (chrome extension)
+- WAVE evaluation tool (Chrome extension)
 
 ## Challenges:
 - Search bar functionality of this application was difficult to implement due to the fact it had to be able to search by name or tag.
@@ -50,36 +60,13 @@ The details of this project are outlined in the <a href="https://frontend.turing
 
 ## Wins:
 - UX/UI layout
-- Our initial planning and design layout set us up for success.
-- Team work
+- Initial planning and design layout
+- Fostering a collaborative team environment
 
-## Testing:
-Mocha and chai are already set up, with a boilerplate test for you.
-
-### Design Inspiration:
-For this project we sourced inspiration from Dribble creators, and also used our imagination during the building process to make it our own!
-
-### Example of Project:
-### Scrolling feature:
-![Scrolling](https://media2.giphy.com/media/U2Cd38gV8vtMMJy6RG/giphy.gif)
-### Favorite a dish:
-![Favorite a dish](https://media2.giphy.com/media/b0Tto5Zxl8mjSDU7R4/giphy.gif)
-### Search by name:
-![Search by name](https://media0.giphy.com/media/EL6ueNVE7rktRRUCcm/giphy.gif)
-
-### Favorite a Recipe:
-![Favorite a Recipe](https://media.giphy.com/media/fi09jYMSMgnxqzWREX/giphy.gif)
-
-### Add Ingredients to Cooklist:
-![Add Ingredients to Cooklist](https://media.giphy.com/media/I1QEllV151OoXtxXyZ/giphy.gif)
-
-### Search by Tag and Name:
-![Search by Tag and Name](https://media.giphy.com/media/XMOltET6Zff6Xk7Kb0/giphy.gif)
-
-### Future Additions:
-- add Drop down for TAGS
-- better search functionality
-- add dyslexia accessibility button that toggles sites font to be reader friendly 
+## Future Additions:
+- Add Drop down for all tags
+- Better search functionality
+- Add dyslexia accessibility button that toggles sites font to be reader friendly 
 
 ## Contributors:
 - [Kendall McGree](https://github.com/kendallm360)
